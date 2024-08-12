@@ -7,14 +7,5 @@ class User < ApplicationRecord
   has_many :events
   has_many :reviews, through: :events
   validates :first_name, :last_name, :nickname, presence: true, length: { minimum: 3 }
-  validates :description, length: { minimum: 3 }
-  validates :description_cannot_be_blank_or_whitespace
-
-  private
-
-  def description_cannot_be_blank_or_whitespace
-    if description.strip.empty?
-      errors.add(:description, "cannot be blank or consist only of whitespace")
-    end
-  end
+  validates :description, length: { minimum: 3 }, format: { with: /\A\S.*\S\z|\A\S\z/, message: "cannot be blank or consist only of whitespace" }
 end
