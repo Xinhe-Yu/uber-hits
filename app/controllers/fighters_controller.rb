@@ -7,10 +7,12 @@ class FightersController < ApplicationController
 
   def create
     @fighter = Fighter.new(fighter_params)
+    @fighter.user = current_user
     if @fighter.save
       # dashboard_path is a placeholder, waiting for fighter's profile (route by pages)
       redirect_to dashboard_path, status: 201 # :created
     else
+      p @fighter.errors
       redirect_to new_fighter_path, status: 422 #	:unprocessable_entity
     end
   end
