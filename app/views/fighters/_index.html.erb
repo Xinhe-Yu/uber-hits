@@ -1,0 +1,26 @@
+<% img_paths = ["https://partyanimals.com/media/avatars/thumbnails/avatars-3.webp",
+"https://partyanimals.com/media/avatars/thumbnails/avatars-6.webp",
+"https://partyanimals.com/media/avatars/thumbnails/avatars-9.webp",
+"https://partyanimals.com/media/avatars/thumbnails/avatars-11.webp",
+"https://partyanimals.com/media/avatars/thumbnails/avatars-19.webp" ] %>
+
+<div class="row">
+  <% fighters.each do |fighter| %>
+    <div class="col-xl-4 col-md-6 my-1">
+      <div class="card" style="height:100%">
+        <%= image_tag img_paths.sample, alt:"#{fighter.nickname}'s profil photo" %>
+        <div class="card-body">
+          <h5 class="card-title">
+            <%= "#{fighter.first_name} #{fighter.last_name} \"#{fighter.nickname}\"" %>
+          </h5>
+          <p class="card-subtitle mb-2 text-body-secondary">
+          <%= "#{fighter.height} cm" if fighter.height %> | <%= "#{fighter.weight} kg" if fighter.weight %>
+          </p>
+          <p class="card-text">
+                    <%= fighter&.description %>
+          </p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

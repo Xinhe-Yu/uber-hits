@@ -1,2 +1,6 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container">
+<h1>Uber Hits!</h1>
+
+<%# With all fighter's cards %>
+<%= render "fighters/index", fighters: @fighters %>
+</div>
