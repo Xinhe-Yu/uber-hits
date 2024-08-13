@@ -4,7 +4,7 @@ class Fighter < ApplicationRecord
   has_many :reviews, through: :events
   has_many :fighters_availabilities
 
-  validates :first_name, :last_name, :nickname, presence: true, length: { minimum: 3 }
+  validates :first_name, :last_name, :nickname, presence: true, length: { minimum: 1 }
   validates :nickname, uniqueness: true
   validates :birth_date, presence: true
   validate :birth_date_cannot_be_in_the_future
