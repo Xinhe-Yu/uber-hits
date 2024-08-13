@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: %i[edit update]
+  before_action :set_event, only: %i[edit update destroy]
 
   def new
     @fighter = Fighter.find(params[:fighter_id])
@@ -26,6 +26,14 @@ class EventsController < ApplicationController
       redirect_to dashboard_path
     else
       p @event.errors
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    if @event.destroy
+      redirect_to dashboard_path
+    else
       render :edit, status: :unprocessable_entity
     end
   end

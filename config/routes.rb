@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :fighters do
     resources :events, only: %i[new create]
   end
-  resources :events, only: %i[edit update]
+  resources :events, only: %i[edit update destroy]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   get "up" => "rails/health#show", as: :rails_health_check
