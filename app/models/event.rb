@@ -2,6 +2,7 @@ class Event < ApplicationRecord
   belongs_to :user
   belongs_to :fighter
   has_many :reviews, dependent: :nullify
+  has_one_attached :photo
 
 
   EVENT_TYPE = %w[programmed ambush]
