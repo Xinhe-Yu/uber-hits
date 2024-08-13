@@ -3,6 +3,7 @@ class EventsController < ApplicationController
 
   def index
     # waiting for is_private colomn for events' table
+    @events = Event.where(is_private: false).where(status: "accepted")
   end
 
   def new
