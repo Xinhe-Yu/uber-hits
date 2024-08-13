@@ -1,5 +1,9 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: %i[edit update destroy]
+  before_action :set_event, only: %i[show edit update destroy]
+
+  def index
+    # waiting for is_private colomn for events' table
+  end
 
   def new
     @fighter = Fighter.find(params[:fighter_id])
@@ -18,6 +22,8 @@ class EventsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
+  def show; end
 
   def edit; end
 
