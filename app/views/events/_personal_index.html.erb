@@ -13,6 +13,7 @@
         <div class="card-body">
           <h5 class="card-title">
             <%= event.title %>
+            <%= render "events/status_badge", status: event.status %>
           </h5>
           <p class="card-text">
           <%= event&.place %>

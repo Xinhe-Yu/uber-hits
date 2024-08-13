@@ -4,12 +4,13 @@
       <%= simple_form_for(@event) do |f| %>
         <%= f.input :fighter, label: "Fighter", input_html: {value: "#{@event.fighter.first_name} #{@event.fighter.last_name} \"#{@event.fighter.nickname}\"", disabled: true} %>
         <%= f.input :title, label: "Event title" %>
-        <%= f.input :fight_type %>
+        <%= f.input :fight_type, collection: %w[programmed ambush] %>
         <%= f.input :place %>
         <%= f.input :start_time %>
         <%= f.input :end_time %>
         <%= f.input :target %>
         <%= f.input :description %>
+        <%= f.input :is_private, label: "Private event" %>
         <div class="form-actions">
           <div class="row justify-content-around pb-3">
             <div class="col-md-5">

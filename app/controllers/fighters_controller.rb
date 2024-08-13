@@ -52,7 +52,8 @@ class FightersController < ApplicationController
     params.require(:fighter).permit(
       :user_id,
       :first_name, :last_name, :nickname, :birth_date,
-      :height, :weight, :fight_style, :description
+      :height, :weight, :fight_style, :description,
+      :price, :have_insurance
     )
   end
 end
