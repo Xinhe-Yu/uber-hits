@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  before_action :set_event, only: %i[edit update]
+
   def new
     @fighter = Fighter.find(params[:fighter_id])
     @event = Event.new
@@ -17,7 +19,22 @@ class EventsController < ApplicationController
     end
   end
 
+  def edit; end
+
+  def update
+    if @event.update(event_params)
+      redirect_to dashboard_path
+    else
+      p @event.errors
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
+
+  def set_event
+    @event = Event.find(params[:id])
+  end
 
   def event_params
     params.require(:event).permit(:title, :description, :place, :start_time, :end_time, :target, :fight_type)

@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-xl-6 col-md-10">
+    <%= simple_form_for(@event) do |f| %>
+  <%= f.input :fighter, label: "Fighter", input_html: {value: "#{@event.fighter.first_name} #{@event.fighter.last_name} \"#{@event.fighter.nickname}\"", disabled: true} %>
+  <%= f.input :title, label: "Event title" %>
+  <%= f.input :fight_type %>
+  <%= f.input :place %>
+  <%= f.input :start_time %>
+  <%= f.input :end_time %>
+  <%= f.input :target %>
+  <%= f.input :description %>
+  <%= f.button :submit,
+                class:"btn btn-danger text-light me-3",
+                style:"width:100%" %>
+<% end %>
+    </div>
+  </div>
+</div>

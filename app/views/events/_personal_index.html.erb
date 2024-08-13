@@ -1,0 +1,25 @@
+<% img_paths = [
+"https://partyanimals.com/media/screenshots/thumbnails/media-image-small-6.jpg",
+"https://partyanimals.com/media/screenshots/thumbnails/media-image-small-7.jpg",
+"https://partyanimals.com/media/screenshots/thumbnails/media-image-small-9.jpg"
+] %>
+
+<h2>My Events</h2>
+<div class="row">
+  <% events.each do |event| %>
+    <div class="col-xl-4 col-md-6 my-1">
+      <div class="card" style="height:100%">
+        <%= image_tag img_paths.sample %>
+        <div class="card-body">
+          <h5 class="card-title">
+            <%= event.title %>
+          </h5>
+          <p class="card-text">
+          <%= event&.place %>
+          </p>
+          <%= link_to "Edit event", edit_event_path(event), class:"badge text-bg-danger text-light link-offset-2 link-underline link-underline-opacity-0" %>
+        </div>
+      </div>
+    </div>
+<% end %>
+</div>
