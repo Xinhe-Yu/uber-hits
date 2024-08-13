@@ -1,10 +1,8 @@
-<%= simple_form_for([@fighter, @event]) do |f| %>
-  <%= f.input :title %>
-  <%= f.input :fight_type %>
-  <%= f.input :place %>
-  <%= f.input :start_time %>
-  <%= f.input :end_time %>
-  <%= f.input :target %>
-  <%= f.input :description %>
-  <%= f.submit %>
-<% end %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-xl-6 col-md-10">
+      <h2>Book an timeslot of <%= @fighter.nickname %>!</h2>
+        <%= render "events/form", fighter: @fighter, event: @event %>
+    </div>
+  </div>
+</div>
