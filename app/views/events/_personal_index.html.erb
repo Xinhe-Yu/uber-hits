@@ -13,10 +13,12 @@
         <div class="card-body">
           <h5 class="card-title">
             <%= event.title %>
+            <%= render "events/status_badge", status: event.status %>
           </h5>
           <p class="card-text">
           <%= event&.place %>
           </p>
+          <%= link_to "See more", event_path(event), class:"badge text-bg-primary text-light link-offset-2 link-underline link-underline-opacity-0" %>
           <%= link_to "Edit event", edit_event_path(event), class:"badge text-bg-danger text-light link-offset-2 link-underline link-underline-opacity-0" %>
         </div>
       </div>
