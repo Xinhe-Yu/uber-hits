@@ -56,7 +56,8 @@ class EventsController < ApplicationController
       :title, :description, :place,
       :start_time, :end_time,
       :target, :fight_type,
-      :is_private
+      :is_private,
+      :photo
     )
   end
 end
