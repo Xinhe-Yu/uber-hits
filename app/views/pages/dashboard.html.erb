@@ -31,5 +31,5 @@
       <%= "#{current_user.fighter.first_name} #{current_user.fighter.last_name} \"#{current_user.fighter.nickname}\"" %>
     </div>
   <% end %>
-<%= render "events/personal_index", events: @events %>
+<%= render "events/personal_index", events: @events, fighter_events: @fighter_events %>
 </div>
