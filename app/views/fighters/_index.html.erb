@@ -17,7 +17,9 @@
           <%= "#{fighter.height} cm" if fighter.height %> | <%= "#{fighter.weight} kg" if fighter.weight %>
           </p>
           <p class="card-text">
-                    <%= fighter&.description %>
+            <%= fighter&.description %>
+            <br>
+            <%= link_to "+ see more", fighter_path(fighter), class:"badge text-bg-primary link-offset-2 link-underline link-underline-opacity-0" %>
           </p>
         </div>
       </div>
