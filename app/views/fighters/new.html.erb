@@ -1,33 +1,8 @@
 <div class="container">
-<div class="row justify-content-center">
-<div class="col-xl-6 col-md-10">
-<h2>Become Fighter!</h2>
-
-<%= simple_form_for(@fighter) do |f| %>
-  <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
-  <%= f.input :first_name, input_html: {value: current_user.first_name} %>
-  <%= f.input :last_name, input_html: {value: current_user.last_name} %>
-  <%= f.input :nickname %>
-  <%= f.input :birth_date, as: :date, html5: true %>
-  <%= f.input :height, label: "Height (cm)" %>
-  <%= f.input :weight, label: "Weight (kg)" %>
-  <%= f.input :fight_style %>
-  <%= f.input :description, placeholder: "Wraaak..." %>
-  <div class="form-actions">
-    <div class="row justify-content-around pb-3">
-      <div class="col-md-5">
-        <%= f.button :submit, "I WANT TO FIGHT",
-                      class:"btn btn-danger text-light me-3",
-                      style:"width:100%" %>
-      </div>
-      <div class="col-md-5">
-        <%= link_to "Go Back", dashboard_path,
-                    class:"btn btn-secondary",
-                    style:"width:100%" %>
-      </div>
+  <div class="row justify-content-center">
+    <div class="col-xl-6 col-md-10">
+      <h2>Become Fighter!</h2>
+      <%= render "fighters/form", btn_text: "I WANT TO FIGHT", fighter: @fighter %>
     </div>
   </div>
-<% end %>
-</div>
-</div>
 </div>
