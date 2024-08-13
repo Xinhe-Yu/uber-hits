@@ -1,0 +1,10 @@
+<%= simple_form_for([@fighter, @event]) do |f| %>
+  <%= f.input :title %>
+  <%= f.input :fight_type %>
+  <%= f.input :place %>
+  <%= f.input :start_time %>
+  <%= f.input :end_time %>
+  <%= f.input :target %>
+  <%= f.input :description %>
+  <%= f.submit %>
+<% end %>
