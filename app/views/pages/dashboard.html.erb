@@ -1,10 +1,31 @@
 <div class="container">
   <h1>Hello, <%= current_user.first_name ? current_user.first_name : current_user.email %>!</h1>
 
-  <%= link_to 'Edit Profile', edit_user_registration_path, class:"btn btn-danger text-light" %>
+  <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+  <%# <button type="button" class="btn btn-primary">1</button>
+  <button type="button" class="btn btn-primary">2</button> %>
+
   <% unless current_user.fighter %>
+    <%= link_to 'Edit Profile', edit_user_registration_path, class:"btn btn-danger text-light" %>
     <%= link_to 'Become Fighter', new_fighter_path, class:"btn btn-dark"  %>
+  </div>
+
   <% else %>
-    <%= render 'fighters/show', fighter: current_user.fighter %>
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        Edit Profile
+      </button>
+      <ul class="dropdown-menu">
+        <li>
+            <%= link_to 'Edit USER Profile', edit_user_registration_path, class:"dropdown-item" %>
+        </li>
+        <li>
+            <%= link_to 'Edit FIGHTER Profile', edit_fighter_path(current_user), class:"dropdown-item" %>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <%= render 'fighters/show', fighter: current_user.fighter %>
   <% end %>
+
 </div>
