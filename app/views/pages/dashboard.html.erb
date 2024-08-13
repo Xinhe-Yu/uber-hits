@@ -1,2 +1,10 @@
-<h1>Hello, <%= current_user.first_name ? current_user.first_name : current_user.email %></h1>
-<%= link_to 'Edit Profile', edit_user_registration_path %>
+<div class="container">
+  <h1>Hello, <%= current_user.first_name ? current_user.first_name : current_user.email %>!</h1>
+
+  <%= link_to 'Edit Profile', edit_user_registration_path, class:"btn btn-danger text-light" %>
+  <% unless current_user.fighter %>
+    <%= link_to 'Become Fighter', new_fighter_path, class:"btn btn-dark"  %>
+  <% else %>
+    <%= render 'fighters/show', fighter: current_user.fighter %>
+  <% end %>
+</div>
