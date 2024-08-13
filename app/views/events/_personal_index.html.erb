@@ -45,7 +45,7 @@
               </p>
               <%= link_to "See more", event_path(event), class:"badge text-bg-primary text-light link-offset-2 link-underline link-underline-opacity-0" %>
               <%# -- waiting for editing Xinhe -- %>
-              <%= link_to "Accept the invitation", edit_event_path(event), class:"badge text-bg-success text-light link-offset-2 link-underline link-underline-opacity-0" %>
+              <%= button_to "Accept the invitation", event_path(event, event: { status: "accepted"}), method: :patch, class:"badge text-bg-success text-light link-offset-2 link-underline link-underline-opacity-0" %>
               <%= link_to "Decline the invitation", edit_event_path(event), class:"badge text-bg-light link-offset-2 link-underline link-underline-opacity-0" %>
             </div>
           </div>
@@ -53,7 +53,29 @@
       <% end %>
     <% end %>
 
+    <% if fighter_events[1] %>
+      <h3>Your coming events!</h3>
+      <% fighter_events[1].each do |event| %>
+        <div class="col-xl-4 col-md-6 my-1">
+          <div class="card" style="height:100%">
+            <%= image_tag img_paths.sample %>
+            <div class="card-body">
+              <h5 class="card-title">
+                <%= event.title %>
+                <%= render "events/status_badge", status: event.status %>
 
-
+              </h5>
+              <p class="card-text">
+                <%= event&.place %>
+              </p>
+              <%= link_to "See more", event_path(event), class:"badge text-bg-primary text-light link-offset-2 link-underline link-underline-opacity-0" %>
+              <%= link_to "Decline the invitation", edit_event_path(event), class:"badge text-bg-light link-offset-2 link-underline link-underline-opacity-0" %>
+            </div>
+          </div>
+        <% end %>
+        </div>
+    <% end %>
   </div>
+
+
 <% end %>
