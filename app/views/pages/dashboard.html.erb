@@ -27,7 +27,9 @@
   </div>
 
   <% if current_user.fighter %>
-    <%= render 'fighters/show', fighter: current_user.fighter %>
+    <div>
+<%= "#{current_user.fighter.first_name} #{current_user.fighter.last_name} \"#{current_user.fighter.nickname}\"" %>
+    </div>
   <% end %>
 
 </div>

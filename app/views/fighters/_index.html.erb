@@ -1,0 +1,31 @@
+<% img_paths = ["https://partyanimals.com/media/avatars/thumbnails/avatars-3.webp",
+"https://partyanimals.com/media/avatars/thumbnails/avatars-6.webp",
+"https://partyanimals.com/media/avatars/thumbnails/avatars-9.webp",
+"https://partyanimals.com/media/avatars/thumbnails/avatars-11.webp",
+"https://partyanimals.com/media/avatars/thumbnails/avatars-19.webp" ] %>
+
+<div class="row">
+  <% fighters.each do |fighter| %>
+    <div class="col-xl-4 col-md-6 my-1">
+      <div class="card" style="height:100%">
+        <%= image_tag img_paths.sample, alt:"#{fighter.nickname}'s profil photo" %>
+        <div class="card-body">
+          <h5 class="card-title">
+            <%= "#{fighter.first_name} #{fighter.last_name} \"#{fighter.nickname}\"" %>
+          </h5>
+          <p class="card-subtitle mb-2 text-body-secondary">
+          <%= "#{fighter.height} cm" if fighter.height %> | <%= "#{fighter.weight} kg" if fighter.weight %>
+          </p>
+          <p class="card-text">
+            <%= fighter&.description %>
+            <br>
+            <%= link_to "+ see more", fighter_path(fighter), class:"badge text-bg-primary link-offset-2 link-underline link-underline-opacity-0" %>
+            <% if current_user && current_user.fighter && current_user.fighter.id != fighter.id %>
+              <%= link_to "> book an event", new_fighter_event_path(fighter), class:"badge text-bg-danger text-light link-offset-2 link-underline link-underline-opacity-0" %>
+            <% end %>
+          </p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

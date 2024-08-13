@@ -1,6 +1,8 @@
 class FightersController < ApplicationController
   before_action :set_fighter_by_user_id, only: %i[edit destroy]
-  before_action :set_fighter, only: %i[update]
+  before_action :set_fighter, only: %i[show update]
+
+  def show; end
 
   def new
     @fighter = Fighter.new
