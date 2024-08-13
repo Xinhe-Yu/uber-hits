@@ -1,3 +1,6 @@
+<div class="container">
+<div class="row justify-content-center">
+<div class="col-xl-6 col-md-10">
 <h2>Sign up</h2>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -12,8 +15,10 @@
                 required: false %>
     <%= f.input :last_name,
                 required: false %>
+                <%# delete this part when validates :description, allow_blank: true. cause normaly we don't ask user to add their description when they create their count  %>
     <%= f.input :description,
                 required: false %>
+                <%# ---- %>
     <%= f.input :password,
                 required: true,
                 hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
@@ -24,8 +29,24 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
+    <div class="row justify-content-around pb-3">
+      <div class="col-md-5">
+      <%= f.button :submit, "Sign up",
+                    class:"btn btn-dark",
+                    style:"width:100%" %>
+      </div>
+      <div class="col-md-5">
+        <%- if controller_name != 'sessions' %>
+          <%= link_to "Log in", new_session_path(resource_name),
+                      class:"btn btn-primary",
+                      style:"width:100%" %>
+          <br />
+        <% end %>
+      </div>
+    </div>
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+</div>
+</div>
+</div>
