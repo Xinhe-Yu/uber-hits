@@ -8,7 +8,6 @@
   <% unless current_user.fighter %>
     <%= link_to 'Edit Profile', edit_user_registration_path, class:"btn btn-danger text-light" %>
     <%= link_to 'Become Fighter', new_fighter_path, class:"btn btn-dark"  %>
-  </div>
 
   <% else %>
     <div class="btn-group" role="group">
@@ -24,8 +23,11 @@
         </li>
       </ul>
     </div>
+  <% end %>
   </div>
-  <%= render 'fighters/show', fighter: current_user.fighter %>
+
+  <% if current_user.fighter %>
+    <%= render 'fighters/show', fighter: current_user.fighter %>
   <% end %>
 
 </div>

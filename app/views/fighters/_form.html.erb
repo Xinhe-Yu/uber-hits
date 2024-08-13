@@ -21,7 +21,7 @@
                       class:"btn btn-secondary",
                       style:"width:100%" %>
         <% else %>
-          <%= link_to 'Delete Fighter\'s profile', fighter_path(current_user),
+          <%= link_to "Delete Fighter\'s profile", fighter_path(current_user),
                       data: {turbo_method: :delete, turbo_confirm: "sure ?"},
                       class:"btn btn-outline-secondary" %>
         <% end %>
