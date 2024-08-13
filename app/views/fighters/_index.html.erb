@@ -20,7 +20,7 @@
             <%= fighter&.description %>
             <br>
             <%= link_to "+ see more", fighter_path(fighter), class:"badge text-bg-primary link-offset-2 link-underline link-underline-opacity-0" %>
-            <% if current_user && current_user.fighter && current_user.fighter.id != fighter.id %>
+            <% unless current_user && current_user.fighter && current_user.fighter.id == fighter.id %>
               <%= link_to "> book an event", new_fighter_event_path(fighter), class:"badge text-bg-danger text-light link-offset-2 link-underline link-underline-opacity-0" %>
             <% end %>
           </p>
