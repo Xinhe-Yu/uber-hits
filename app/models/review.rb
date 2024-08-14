@@ -1,6 +1,7 @@
 class Review < ApplicationRecord
   belongs_to :event
 
+  validates :event, uniqueness: { scope: :user_to_fighter, message: "You can only leave one review per event." }
   validates :rating, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 5 }
   validates :comment, length: { minimum: 3 }
   validate :cannot_have_only_whitespace

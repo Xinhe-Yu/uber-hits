@@ -1,4 +1,13 @@
 
 
 <%= @event.title %>
-<%= render "events/status_badge", status: @event.status %>
+<%= render "events/status_badge", status: @event.status, date: @event.end_time %>
+
+<div class="p-4"></div>
+
+<% @event.reviews.each do |review| %>
+  <%= render "reviews/show", review: review %>
+<% end %>
+<% if @waiting_for_comment %>
+<%= render "reviews/new", event: @event, review: @review %>
+<% end %>

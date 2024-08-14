@@ -1,0 +1,36 @@
+<div class="container">
+<div class="row">
+<h2>My preference</h2>
+
+<table class="table table-danger table-striped-columns">
+  <thead>
+    <tr>
+      <% @days_of_week.each do |day| %>
+        <th scope="col text-center"><%= day %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+
+    </tr>
+  </tbody>
+</table>
+
+  <h2>My disponibility of 7 coming days</h2>
+<table class="table table-info table-striped-columns">
+  <thead>
+    <tr>
+      <% @real_days.each do |day| %>
+        <th scope="col text-center"><%= day %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+
+    </tr>
+  </tbody>
+</table>
+  </div>
+</div>

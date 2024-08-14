@@ -15,6 +15,14 @@ class PagesController < ApplicationController
     end
   end
 
+  def planning
+    @days_of_week = %w[Mon Tue Wed Thu Fri Sat Sun]
+    today = Date.today
+    @real_days = (0..6).to_a.map do |i|
+      (today + i).strftime("%a %d %b")
+    end
+  end
+
   private
 
   def pending_events(fighter_events)

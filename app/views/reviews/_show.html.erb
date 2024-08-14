@@ -1,0 +1,15 @@
+<div class="card m-3">
+  <div class="card-body">
+    <h5 class="card-title">
+      <% review.rating.times do %>
+        <i class="fa-solid fa-star text-warning"></i>
+      <% end %>
+      <% if review.user_to_fighter %>
+        USER <%= render "shared/user_name", user: review.event.user %> says:
+      <% else %>
+        FIGHTER <%= render "shared/fighter_name", fighter: review.event.fighter %> says:
+      <% end %>
+    </h5>
+    <p class="card-text"><%= review.comment %></p>
+  </div>
+</div>
