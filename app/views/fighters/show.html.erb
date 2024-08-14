@@ -1,6 +1,19 @@
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <%= "#{@fighter.first_name} #{@fighter.last_name} \"#{@fighter.nickname}\"" %>
+    </div>
+    <% unless current_user && current_user.fighter && current_user.fighter.id == @fighter.id %>
+      <%= link_to "> book an event with #{@fighter.nickname}", new_fighter_event_path(@fighter), class:"btn btn-danger text-light" %>
+    <% end %>
+  </div>
 
-<div class="card">
-<div class="card-body">
-<%= "#{@fighter.first_name} #{@fighter.last_name} \"#{@fighter.nickname}\"" %>
-</div>
+  <h2>His reviews</h2>
+
+  <% @fighter.reviews.each do |review| %>
+    <% if review.user_to_fighter %>
+      <%= render "reviews/show", review: review %>
+    <% end %>
+  <% end %>
+
 </div>
