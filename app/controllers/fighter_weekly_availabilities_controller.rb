@@ -1,0 +1,2 @@
+class FighterWeeklyAvailabilitiesController < ApplicationController
+end
