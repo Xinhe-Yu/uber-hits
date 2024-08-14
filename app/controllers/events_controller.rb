@@ -19,7 +19,7 @@ class EventsController < ApplicationController
     @event.fighter = @fighter
     @event.status = "pending"
     if @event.save
-      redirect_to root_path
+      redirect_to event_path(@event), notice: "You just created an event with #{@fighter.nickname}"
     else
       render :new, status: :unprocessable_entity
     end
@@ -34,7 +34,7 @@ class EventsController < ApplicationController
 
   def update
     if @event.update(event_params)
-      redirect_to dashboard_path
+      redirect_to event_path(@event), notice: "You succesfully modified the event."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -42,7 +42,7 @@ class EventsController < ApplicationController
 
   def destroy
     if @event.destroy
-      redirect_to dashboard_path
+      redirect_to dashboard_path, notice: "You deleted the event."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -69,7 +69,7 @@ class EventsController < ApplicationController
 
     is_user = @event.user == current_user
     is_fighter = @event.fighter == current_user.fighter
-    return false if (is_user || is_fighter) || @event.reviews.length == 2
+    return false if !(is_user || is_fighter) || @event.reviews.length == 2
     return true if @event.reviews.empty?
 
     @event.reviews[0].user_to_fighter != user
