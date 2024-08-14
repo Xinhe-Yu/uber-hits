@@ -1,6 +1,13 @@
 <div class="container">
   <h1>Hello, <%= current_user.first_name ? current_user.first_name : current_user.email %>!</h1>
 
+  <% if current_user.fighter %>
+    <div>
+      <%= "#{current_user.fighter.first_name} #{current_user.fighter.last_name} \"#{current_user.fighter.nickname}\"" %>
+    </div>
+  <% end %>
+<%= render "events/personal_index", events: @events, fighter_events: @fighter_events %>
+
   <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
 
   <% unless current_user.fighter %>
@@ -9,7 +16,8 @@
 
   <% else %>
     <div class="btn-group" role="group">
-      <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+      <button type="button" class="btn btn-secondary rounded-pill"
+      data-bs-toggle="dropdown" aria-expanded="false">
         Edit Profile
       </button>
       <ul class="dropdown-menu">
@@ -24,10 +32,4 @@
   <% end %>
   </div>
 
-  <% if current_user.fighter %>
-    <div>
-      <%= "#{current_user.fighter.first_name} #{current_user.fighter.last_name} \"#{current_user.fighter.nickname}\"" %>
-    </div>
-  <% end %>
-<%= render "events/personal_index", events: @events, fighter_events: @fighter_events %>
 </div>

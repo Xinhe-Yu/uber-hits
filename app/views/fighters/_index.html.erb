@@ -1,33 +1,44 @@
-<% img_paths = ["https://partyanimals.com/media/avatars/thumbnails/avatars-3.webp",
+<% img_paths = [
+"https://partyanimals.com/media/avatars/thumbnails/avatars-1.webp",
+"https://partyanimals.com/media/avatars/thumbnails/avatars-3.webp",
 "https://partyanimals.com/media/avatars/thumbnails/avatars-6.webp",
 "https://partyanimals.com/media/avatars/thumbnails/avatars-9.webp",
+"https://partyanimals.com/media/avatars/thumbnails/avatars-10.webp",
 "https://partyanimals.com/media/avatars/thumbnails/avatars-11.webp",
-"https://partyanimals.com/media/avatars/thumbnails/avatars-19.webp" ] %>
+"https://partyanimals.com/media/avatars/thumbnails/avatars-16.webp",
+"https://partyanimals.com/media/avatars/thumbnails/avatars-19.webp",
+"https://partyanimals.com/media/avatars/thumbnails/avatars-20.webp"] %>
 
 <div class="row">
   <% fighters.each do |fighter| %>
     <div class="col-xl-4 col-md-6 my-1">
       <div class="card" style="height:100%">
-      <%= render "shared/default_photo",
+        <%= render "shared/default_photo",
                   item: fighter,
                   default_img: img_paths.sample,
                   class_name: "",
                   alt: "#{fighter.nickname}'s profil photo" %>
         <div class="card-body">
           <h5 class="card-title">
-            <%= "#{fighter.first_name} #{fighter.last_name} \"#{fighter.nickname}\"" %>
+            <%= "#{fighter.first_name} #{fighter.last_name}" %>
+            <b><%="\"#{fighter.nickname}\"" %></b>
           </h5>
-          <p class="card-subtitle mb-2 text-body-secondary">
-          <%= "#{fighter.height} cm" if fighter.height %> | <%= "#{fighter.weight} kg" if fighter.weight %>
-          </p>
-          <p class="card-text">
-            <%= fighter&.description %>
+          <div class="d-flex justify-content-between mt-3 align-items-baseline" >
+            <p class="card-subtitle mb-2 text-body-secondary">
+            <%= "#{fighter.height} cm" if fighter.height %> | <%= "#{fighter.weight} kg" if fighter.weight %>
+            </p>
+            <p class="btn btn-success rounded-pill">
+              <%="💰 #{fighter.price}€/h" %>
+            </p>
+          </div>
+            <p class="card-text">
+              <%= fighter&.description %>
             <br>
-            <%= link_to "+ see more", fighter_path(fighter), class:"badge text-bg-primary link-offset-2 link-underline link-underline-opacity-0" %>
-            <% unless current_user && current_user.fighter && current_user.fighter.id == fighter.id %>
-              <%= link_to "> book an event", new_fighter_event_path(fighter), class:"badge text-bg-danger text-light link-offset-2 link-underline link-underline-opacity-0" %>
-            <% end %>
-          </p>
+              <%= link_to "+ see more", fighter_path(fighter), class:"badge text-bg-primary link-offset-2 link-underline link-underline-opacity-0 mt-3" %>
+              <% unless current_user && current_user.fighter && current_user.fighter.id == fighter.id %>
+                <%= link_to "> book an event", new_fighter_event_path(fighter), class:"badge text-bg-danger text-light link-offset-2 link-underline link-underline-opacity-0" %>
+              <% end %>
+            </p>
         </div>
       </div>
     </div>
