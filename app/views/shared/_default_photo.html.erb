@@ -1,0 +1,10 @@
+<%# accept variables:
+  item,
+  default_img (for img's path),
+  class_name (empty string if no specific class),
+  alt %>
+<% if item.photo.key %>
+  <%= cl_image_tag(item.photo.key) %>
+<% else %>
+  <%= image_tag default_img, class: class_name, alt: alt %>
+<% end %>

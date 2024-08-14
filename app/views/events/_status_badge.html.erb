@@ -1,7 +1,11 @@
-<% if status == "pending" %>
-<span class="badge text-bg-primary">PENDING</span>
-<% elsif status == "accepted" %>
-<span class="badge text-bg-success">ACCEPTED</span>
+<% if date.to_date < Date.today %>
+  <span class="badge text-bg-secondary">PASSED</span>
+<% end %>
+
+<% if status == "accepted" %>
+  <span class="badge text-bg-success">ACCEPTED</span>
+<% elsif status == "pending" %>
+  <span class="badge text-bg-primary">PENDING</span>
 <% else %>
-<span class="badge text-bg-warning">DECLINED</span>
+  <span class="badge text-bg-warning">DECLINED</span>
 <% end %>
