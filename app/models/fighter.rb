@@ -3,6 +3,7 @@ class Fighter < ApplicationRecord
   has_many :events, dependent: :nullify
   has_many :reviews, through: :events
   has_many :fighters_availabilities, dependent: :destroy
+  has_one :fighter_weekly_availability, dependent: :destroy
   has_one_attached :photo
 
   validates :first_name, :last_name, :nickname, presence: true, length: { minimum: 1 }
