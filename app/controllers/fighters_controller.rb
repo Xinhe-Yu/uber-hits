@@ -13,7 +13,7 @@ class FightersController < ApplicationController
     @fighter.user = current_user
     if @fighter.save
       # dashboard_path is a placeholder, waiting for fighter's profile (route by pages)
-      redirect_to dashboard_path, notice: "Your fighter's profile is successfully created." # created
+      redirect_to fighter_path(@fighter), notice: "Congradulation! You just created your fighter's profile."
     else
       redirect_to new_fighter_path, status: :unprocessable_entity
     end
