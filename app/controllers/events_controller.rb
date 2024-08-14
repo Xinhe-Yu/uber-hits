@@ -25,7 +25,10 @@ class EventsController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    @review = Review.new
+    @waiting_for_comment = waiting_for_comment
+  end
 
   def edit; end
 
@@ -59,5 +62,16 @@ class EventsController < ApplicationController
       :is_private,
       :photo, :status
     )
+  end
+
+  def waiting_for_comment
+    return false if @event.end_time.to_datetime < Time.now
+
+    is_user = @event.user == current_user
+    is_fighter = @event.fighter == current_user.fighter
+    return false if (is_user || is_fighter) || @event.reviews.length == 2
+    return true if @event.reviews.empty?
+
+    @event.reviews[0].user_to_fighter != user
   end
 end

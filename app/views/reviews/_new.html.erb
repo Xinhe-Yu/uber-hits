@@ -1,0 +1,12 @@
+<%= simple_form_for [event, review] do |f| %>
+
+  <%= f.label :rating %>
+  <%= f.collection_radio_buttons(:rating, (0..5).to_a.map { |i| [i, i] }, :first, :last) do |b| %>
+    <div class="form-check form-check-inline">
+      <%= b.radio_button(class: "form-check-input") %>
+      <%= b.label(class: 'form-check-label') %>
+    </div>
+  <% end %>
+  <%= f.input :comment %>
+  <%= f.button :submit %>
+<% end %>
