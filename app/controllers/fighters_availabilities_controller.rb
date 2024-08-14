@@ -1,0 +1,2 @@
+class FightersAvailabilitiesController < ApplicationController
+end
