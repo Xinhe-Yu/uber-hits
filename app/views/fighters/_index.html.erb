@@ -8,7 +8,11 @@
   <% fighters.each do |fighter| %>
     <div class="col-xl-4 col-md-6 my-1">
       <div class="card" style="height:100%">
-        <%= image_tag img_paths.sample, alt:"#{fighter.nickname}'s profil photo" %>
+      <%= render "shared/default_photo",
+                  item: fighter,
+                  default_img: img_paths.sample,
+                  class_name: "",
+                  alt: "#{fighter.nickname}'s profil photo" %>
         <div class="card-body">
           <h5 class="card-title">
             <%= "#{fighter.first_name} #{fighter.last_name} \"#{fighter.nickname}\"" %>

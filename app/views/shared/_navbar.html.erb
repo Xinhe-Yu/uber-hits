@@ -1,8 +1,7 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon bg-dark" data-bs-theme="dark">
   <div class="container-fluid px-4">
     <%= link_to root_path, class: "navbar-brand" do %>
-      <h3 class="m-0"><i class="fa-solid fa-hand-fist fa-rotate-90 text-danger"></i> Uber
-      <span class="text-danger fw-bold">Hits</span></h3>
+      <%= image_tag "logo.svg" %>
     <% end %>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,7 +19,7 @@
           </li>
           <li class="nav-item dropdown">
           <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= image_tag "https://partyanimals.com/media/avatars/avatars-2.png", class: "avatar", alt: "dropdown menu" %>
+            <%= render "shared/default_photo", item: current_user, default_img: "https://partyanimals.com/media/avatars/avatars-2.png", class_name: "avatar", alt: "avatar" %>
           </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "Profile", dashboard_path, class: "dropdown-item" %>
@@ -29,6 +28,9 @@
             </div>
           </li>
         <% else %>
+          <li class="nav-item">
+            <%= link_to "Events", events_path, class: "nav-link" %>
+          </li>
           <li class="nav-item">
             <%= link_to "Login", new_user_session_path, class: "nav-link" %>
           </li>

@@ -2,8 +2,6 @@
   <h1>Hello, <%= current_user.first_name ? current_user.first_name : current_user.email %>!</h1>
 
   <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-  <%# <button type="button" class="btn btn-primary">1</button>
-  <button type="button" class="btn btn-primary">2</button> %>
 
   <% unless current_user.fighter %>
     <%= link_to 'Edit Profile', edit_user_registration_path, class:"btn btn-danger text-light" %>
@@ -31,5 +29,5 @@
       <%= "#{current_user.fighter.first_name} #{current_user.fighter.last_name} \"#{current_user.fighter.nickname}\"" %>
     </div>
   <% end %>
-<%= render "events/personal_index", events: @events %>
+<%= render "events/personal_index", events: @events, fighter_events: @fighter_events %>
 </div>
