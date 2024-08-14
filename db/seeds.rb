@@ -508,7 +508,7 @@ Review.create!(
 Review.create!(
   comment: "Razorblade? More like butter knife. I've seen sharper.",
   rating: 2,
-  user_to_fighter: true,
+  user_to_fighter: false,
   event: event3
 )
 
@@ -588,9 +588,6 @@ Review.create!(
   user_to_fighter: true,
   event: event6
 )
-
-# Reviews for the new fighters' events
-puts "Creating funny reviews for the new fighters..."
 
 Review.create!(
   comment: "Borzinger took down the gym bully like he was made of paper. Remind me to stay out of that alley.",
