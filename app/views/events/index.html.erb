@@ -9,7 +9,11 @@
     <% @events.each do |event| %>
       <div class="col-xl-4 col-md-6 my-1">
         <div class="card" style="height:100%">
-          <%= image_tag img_paths.sample %>
+          <%= render "shared/default_photo",
+                    item: event,
+                    default_img: img_paths.sample,
+                    class_name: "",
+                    alt: "#{event.title}'s image" %>
           <div class="card-body">
             <h5 class="card-subtitle mb-2 text-body-secondary">
               <%= "#{event.fighter.first_name} #{event.fighter.last_name} \"#{event.fighter.nickname}\"" %>
