@@ -1,7 +1,19 @@
-<%= simple_form_for([fighter, event]) do |f| %>
+<%= simple_form_for([fighter, event])
+                      html: {
+                      data: {
+                      controller: 'datepicker'
+                      }
+                      } do |f| %>
   <%= f.input :title, label: "Event title" %>
   <%= f.input :fight_type, collection: %w[programmed ambush] %>
   <%= f.input :place %>
+  <%= f.input :opening_date,
+            as: :string,
+            input_html: {
+              data: {
+                controller: "datepicker"
+                }
+              } %>
   <%= f.input :start_time %>
   <%= f.input :end_time %>
   <%= f.input :target %>
