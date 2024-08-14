@@ -12,13 +12,13 @@
           <%= image_tag img_paths.sample %>
           <div class="card-body">
             <h5 class="card-subtitle mb-2 text-body-secondary">
-            <%= "#{event.fighter.first_name} #{event.fighter.last_name} \"#{event.fighter.nickname}\"" %>
+              <%= "#{event.fighter.first_name} #{event.fighter.last_name} \"#{event.fighter.nickname}\"" %>
             </h5>
             <h5 class="card-title">
               Will Participate: <%= event.title %>
             </h5>
             <p class="card-text">
-            <i class="fa-solid fa-location-dot"></i> <%= event&.place %>
+              <i class="fa-solid fa-location-dot"></i> <%= event&.place %>
             </p>
             <%= link_to "See more", event_path(event), class:"badge text-bg-primary text-light link-offset-2 link-underline link-underline-opacity-0" %>
           </div>

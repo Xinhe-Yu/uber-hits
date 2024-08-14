@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[show edit update destroy]
+  skip_before_action :authenticate_user!, only: :index
 
   def index
     # waiting for is_private colomn for events' table
@@ -32,7 +33,6 @@ class EventsController < ApplicationController
     if @event.update(event_params)
       redirect_to dashboard_path
     else
-      p @event.errors
       render :edit, status: :unprocessable_entity
     end
   end
@@ -57,7 +57,7 @@ class EventsController < ApplicationController
       :start_time, :end_time,
       :target, :fight_type,
       :is_private,
-      :photo
+      :photo, :status
     )
   end
 end
