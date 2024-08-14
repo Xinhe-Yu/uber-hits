@@ -33,7 +33,6 @@ class EventsController < ApplicationController
     if @event.update(event_params)
       redirect_to dashboard_path
     else
-      p @event.errors
       render :edit, status: :unprocessable_entity
     end
   end
