@@ -3,7 +3,7 @@
                         controller: 'datepicker'
                       }
                     }) do |f| %>
-  <%= f.input :title, label: "Event title" %>
+  <%= f.input :title, label: "Fight title" %>
   <%= f.input :fight_type, collection: %w[programmed ambush] %>
   <%= f.input :place %>
   <%= f.input :start_time,
@@ -13,7 +13,8 @@
                   datepicker_target: 'startTimeInput',
                 }
               } %>
-  <%= f.input :end_time,
+  <%= f.input :duration, as: :integer %>
+  <%# <%= f.input :end_time,
               as: :string,
               input_html: {
                 data: {
@@ -22,8 +23,8 @@
               } %>
   <%= f.input :target %>
   <%= f.input :description %>
-  <%= f.input :is_private, label: "Private event" %>
-  <%= f.button :submit,
+  <%= f.input :is_private, label: "Private fight" %>
+  <%= f.button :submit, "Book fight",
                 class:"btn btn-danger text-light me-3",
                 style:"width:100%" %>
 <% end %>
