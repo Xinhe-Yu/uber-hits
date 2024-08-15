@@ -74,7 +74,7 @@ class EventsController < ApplicationController
     return false if !(is_user || is_fighter) || @event.reviews.length == 2
     return true if @event.reviews.empty?
 
-    @event.reviews[0].user_to_fighter != current_user
+    @event.reviews[0].user_to_fighter != is_user
   end
 
   def calcul_end_time
