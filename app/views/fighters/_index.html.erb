@@ -9,24 +9,26 @@
   "https://partyanimals.com/media/avatars/thumbnails/avatars-19.webp",
   "https://partyanimals.com/media/avatars/thumbnails/avatars-20.webp"
 ] %>
-
-<div class="container-fluid">
+<div class="container-fluid mb-5">
   <div class="row">
+    <!-- Fighters List -->
     <div class="col-lg-9">
       <div class="fighters-header d-flex align-items-center justify-content-between mb-3">
-        <input type="text" class="form-control" placeholder="Search">
-        <input type="text" class="form-control" placeholder="12/08/24">
+        <input type="text" class="form-control me-2" placeholder="Search">
+        <input type="text" class="form-control me-2" placeholder="12/08/24">
         <input type="text" class="form-control" placeholder="2 hours">
       </div>
 
-      <div class="row fighters-list">
+      <div class="fighters-list"> <!-- Add g-3 for grid gap -->
         <% fighters.each do |fighter| %>
-          <div class="col-xl-4 col-md-6 my-3">
-            <div class="card h-100 fighter-card">
+          <div class="col-lg-4 col-md-6">
+            <div class="h-100 fighter-card">
               <div class="fighter-image position-relative">
-                <%= image_tag img_paths.sample, class: "card-img-top rounded fighter-img", alt: "#{fighter.nickname}'s profile photo" %>
-                <div class="fighter-stats position-absolute">
+                <%= image_tag img_paths.sample, class: "card-img-top rounded fighter-img p-1", alt: "#{fighter.nickname}'s profile photo" %>
+                <div class="fighter-height position-absolute">
                   <p class="stat mb-0"><%= "#{fighter.height}cm" %></p>
+                </div>
+                <div class="fighter-weight position-absolute">
                   <p class="stat mb-0"><%= "#{fighter.weight}kg" %></p>
                 </div>
               </div>
@@ -40,9 +42,9 @@
                   </div>
                 </div>
                 <p class="card-subtitle text-muted mb-2"><%= "#{fighter.fight_style}" %></p>
-                <p class="card-text text-muted"><%= truncate(fighter.description, length: 40) %></p>
-                <div class="d-flex justify-content-between align-items-center mt-auto">
-                  <p class="price-pill btn btn-light rounded-pill px-3 py-1"><%="💰 #{fighter.price}€/h" %></p>
+                <p class="card-text text-muted"><%= truncate(fighter.description, length: 50) %></p>
+                <div class="bottom-card d-flex justify-content-between align-items-baseline mt-auto">
+                  <p class="price-pill rounded-pill px-3 py-1"><%="💰 #{fighter.price}€/h" %></p>
                   <p class="total text-end text-muted small mb-0"><%= "2 400€ au total" %></p>
                 </div>
               </div>
@@ -62,6 +64,7 @@
     </div>
   </div>
 </div>
+
 
 <!-- <% img_paths = [
 "https://partyanimals.com/media/avatars/thumbnails/avatars-1.webp",
