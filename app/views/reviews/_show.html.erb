@@ -1,14 +1,18 @@
 <div class="card m-3">
   <div class="card-body">
     <h5 class="card-title">
+        <% if review.user_to_fighter %>
+        <%= render "shared/anonyme_name", user: review.event.user %>
+      <% else %>
+        FIGHTER <%= render "shared/fighter_name", fighter: review.event.fighter %>
+      <% end %>
+      <span class="badge bg-secondary-subtle text-secondary-emphasis rounded-pill">      <%= review.passed_time %></span>
+    <h5 class="card-subtitle">
       <% review.rating.times do %>
         <i class="fa-solid fa-star text-warning"></i>
       <% end %>
-      <% if review.user_to_fighter %>
-        <%= render "shared/anonyme_name", user: review.event.user %> says:
-      <% else %>
-        FIGHTER <%= render "shared/fighter_name", fighter: review.event.fighter %> says:
-      <% end %>
+    </h5>
+
     </h5>
     <p class="card-text"><%= review.comment %></p>
   </div>
