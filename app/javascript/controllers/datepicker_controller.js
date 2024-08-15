@@ -5,10 +5,6 @@ import rangePlugin from "flatpickrRangePlugin";
 export default class extends Controller {
   static targets = ["startTimeInput", "endTimeInput"]
   connect() {
-    flatpickr(this.startTimeInputTarget, {
-      "plugins": [new rangePlugin({ input: this.endTimeInputTarget})],
-      enableTime: true,
-
-      })
+    flatpickr(this.startTimeInputTarget)
   }
 }
