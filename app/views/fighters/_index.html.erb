@@ -41,7 +41,7 @@
                 <p class="card-text text-muted"><%= truncate(fighter.description, length: 40) %></p>
                 <div class="d-flex justify-content-between align-items-center mt-auto">
                   <p class="price-pill btn btn-light rounded-pill px-3 py-1"><%="💰 #{fighter.price}€/h" %></p>
-                  <p class="total text-end text-muted small mb-0"><%= "2 400€ au total" %></p>
+                  <p class="total text-end text-muted small mb-0"><%= "#{fighter.price * @duration}€ au total" %></p>
                 </div>
               </div>
             </div>
