@@ -1,19 +1,62 @@
-<div class="container">
-  <div class="card">
-    <div class="card-body">
-      <%= "#{@fighter.first_name} #{@fighter.last_name} \"#{@fighter.nickname}\"" %>
+<div class="main-container ms-5 me-5">
+  <h2 class="py-3"><%= "#{@fighter.nickname}" %></h2>
+  <div class="d-flex">
+    <div class="col-lg-6">
+      <div class="fighter-infos">
+        <div class="d-flex fighter-photos">
+          <div class="col-8">
+            <img src="https://partyanimals.com/media/avatars/thumbnails/avatars-10.webp" alt="img fighter" width=97% height =100%>
+          </div>
+          <div class="col-4">
+            <img src="https://partyanimals.com/media/avatars/thumbnails/avatars-12.webp" alt="img fighter" width=97% class="mb-3">
+            <img src="https://partyanimals.com/media/avatars/thumbnails/avatars-16.webp" alt="img fighter" width=97%>
+          </div>
+        </div>
+      </div>
+      <div class="fighter-details mt-3">
+        <h3><%= "#{@fighter.first_name} #{@fighter.last_name}" %></h3>
+        <p><i class="fa-solid fa-ruler-vertical"></i><%= " #{@fighter.height}cm  |  "%>
+          <i class="fa-solid fa-weight-scale"></i></i><%= " #{@fighter.weight} kg " %></p>
+        <p><i class="fa-solid fa-user-ninja"></i><%= " Style de combat:"%>
+          <b><%="#{@fighter.fight_style}" %></b>
+        </p>
+        <hr class="mt-4">
+        <div class="avatar-section">
+          <%= render "shared/default_photo", item: current_user, default_img: "https://partyanimals.com/media/avatars/avatars-2.png", class_name: "avatar", alt: "avatar" %>
+          <div class="notification-content">
+            <h5>Fighter experience</h5>
+            <p>Fighter since X time</p>
+          </div>
+        </div>
+        <div>
+          <hr>
+          <h4>Description</h4>
+          <p><%="#{@fighter.description}" %></p>
+        </div>
+      </div>
     </div>
-    <% unless current_user && current_user.fighter && current_user.fighter.id == @fighter.id %>
-      <%= link_to "> book an event with #{@fighter.nickname}", new_fighter_event_path(@fighter), class:"btn btn-danger text-light" %>
-    <% end %>
+    <div class="form ms-3 col-lg-5">
+      <img src="https://sp-ao.shortpixel.ai/client/to_auto,q_glossy,ret_img,w_740,h_900/https://cdn.marketing123.123formbuilder.com/wp-content/uploads/2023/04/private-school-application-form.jpg" alt="formulaire">
+    </div>
   </div>
-
-  <h2>His reviews</h2>
-
-  <% @fighter.reviews.each do |review| %>
-    <% if review.user_to_fighter %>
-      <%= render "reviews/show", review: review %>
-    <% end %>
-  <% end %>
-
+  <hr>
+  <h4>Reviews</h4>
+  <div class="row">
+    <% @fighter.reviews.each do |review| %>
+        <% if review.user_to_fighter %>
+    <div class="col-lg-6">
+          <%= render "reviews/show", review: review %>
+    </div>
+        <% end %>
+      <% end %>
+  </div>
 </div>
+
+
+
+
+  <%# <div class="card">
+    <% unless current_user && current_user.fighter && current_user.fighter.id == @fighter.id %>
+      <%# <%= link_to "> book an event with #{@fighter.nickname}", new_fighter_event_path(@fighter), class:"btn btn-danger text-light" %>
+    <%# <% end %>
+  <%# </div> %>
