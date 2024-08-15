@@ -17,8 +17,10 @@ class Fighter < ApplicationRecord
 
   validates :first_name, :last_name, :nickname, presence: true, length: { minimum: 1 }
   validates :nickname, uniqueness: true
+
   validates :birth_date, presence: true
-  validate :birth_date_cannot_be_in_the_future
+  validate :validate_birth_date
+
   validates :height, presence: true, numericality: {
     greater_than_or_equal_to: 120,
     less_than_or_equal_to: 300,
@@ -52,14 +54,15 @@ class Fighter < ApplicationRecord
     validate_field_cannot_have_only_whitespace(:description)
   end
 
-  def birth_date_cannot_be_in_the_future
-    if birth_date > Date.today
-      errors.add(:birth_date, "can't be in the future")
-    elsif birth_date > Date.today - 14.years
-      errors.add(:birth_date, "can't be less than 14 years old")
-    elsif birth_date < Date.today - 120.years
-      errors.add(:birth_date, "can't be more than 120 years old")
-    end
+  def validate_birth_date
+    date_cannot_be_too_late(:birth_date,
+                            message: "can't be in the future")
+    date_cannot_be_too_late(:birth_date,
+                            ante_quem: Date.today - 14.years,
+                            message: "can't be less than 14 years old")
+    date_cannot_be_too_early(:birth_date,
+                             post_quem: Date.today - 120.years,
+                             message: "can't be more than 120 years old")
   end
 
   def create_fighter_weekly_availability

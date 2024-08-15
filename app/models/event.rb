@@ -1,34 +1,35 @@
 class Event < ApplicationRecord
   attr_accessor :duration
-  
+
   belongs_to :user
   belongs_to :fighter
   has_many :reviews, dependent: :nullify
   has_one_attached :photo
 
-
   EVENT_TYPE = %w[programmed ambush]
   STATUS = %w[pending accepted declined]
 
   validates :title, presence: true
-  validates :fight_type, presence: true, inclusion: { in: EVENT_TYPE, message: "%{value} is not a valid fight type" }
-  validates :status, inclusion: { in: STATUS, message: "%{value} is not a valid status" }
-  # validates :description, :place, format: { with: /\A\S.*\S\z|\A\S\z/, message: "cannot be blank or consist only of whitespace" }
-  validate :cannot_have_only_whitespace
+  validates :fight_type, presence: true, inclusion: { in: EVENT_TYPE, message: "%<value> is not a valid fight type" }
+  validates :start_time, presence: true
+  validate :validate_start_time
+
+  validates :status, inclusion: { in: STATUS, message: "%<value> is not a valid status" }
+
   validate :user_cannot_be_fighter
+  validate :validate_description
 
   private
 
   def user_cannot_be_fighter
-    if user == fighter.user
-      errors.add(:base, 'User cannot create an event where they are the fighter')
-    end
+    errors.add(:base, 'User cannot book itself as fighter') if user == fighter.user
   end
 
-  def cannot_have_only_whitespace
-    if description.length.positive? && !description.match?(/\S/)
-      errors.add(:description, "cannot consist only of whitespaces")
-      return false
-    end
+  def validate_start_time
+    date_cannot_be_too_early(:start_time, message: "can't be a passed moment")
+  end
+
+  def validate_description
+    validate_field_cannot_have_only_whitespace(:description)
   end
 end
