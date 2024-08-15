@@ -16,11 +16,12 @@ class PagesController < ApplicationController
   end
 
   def planning
-    @days_of_week = %w[Mon Tue Wed Thu Fri Sat Sun]
+    @days_of_week = %w[monday tuesday wednesday thursday friday saturday sunday]
     today = Date.today
     @real_days = (0..6).to_a.map do |i|
       (today + i).strftime("%a %d %b")
     end
+    @availability = current_user.fighter.fighter_weekly_availability
   end
 
   private

@@ -2,23 +2,37 @@
 <div class="row">
 <h2>My preference</h2>
 
-<table class="table table-danger table-striped-columns">
+<table class="table table-striped-columns text-center">
   <thead>
     <tr>
       <% @days_of_week.each do |day| %>
-        <th scope="col text-center"><%= day %></th>
+        <th scope="col"><%= day[0..2].capitalize %></th>
       <% end %>
     </tr>
   </thead>
   <tbody>
+  <%= simple_form_for @availability do |f|%>
     <tr>
-
+      <% @days_of_week.each do |day| %>
+      <td>
+        <%= f.input day.to_sym, as: :boolean, label: false,
+        input_html: {
+          style: "width: 1.5em; height: 1.5em; margin: auto",
+          class: "border border-2",
+        },
+          wrapper: false
+        %>
+      </td>
+      <% end %>
     </tr>
+
   </tbody>
 </table>
+  <%= f.button :submit, "Save my change", class: "btn btn-primary" %>
+  <% end %>
 
   <h2>My disponibility of 7 coming days</h2>
-<table class="table table-info table-striped-columns">
+<table class="table table-info table-striped-columns text-center">
   <thead>
     <tr>
       <% @real_days.each do |day| %>
