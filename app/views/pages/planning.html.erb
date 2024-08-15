@@ -33,20 +33,24 @@
 
   <h2>My disponibility of 7 coming days</h2>
 <table class="table table-info table-striped-columns text-center">
+<% [0..6, 7..13].each do |scope| %>
   <thead>
     <tr>
-      <% @real_days.each do |day| %>
+      <% @real_days[scope].each do |day| %>
         <th scope="col text-center"><%= day %></th>
       <% end %>
     </tr>
-  </thead>
-  <tbody>
+  <thead>
+    <tbody>
     <tr>
       <% 7.times do %>
-
+        <%= @availabilities[0].is_available %>
       <% end %>
     </tr>
   </tbody>
+
+<% end %>
+
 </table>
   </div>
 </div>
