@@ -8,6 +8,9 @@ Rails.application.routes.draw do
     resources :events, only: %i[new create]
   end
 
+  resources :fighter_weekly_availabilities, only: %i[update]
+  resources :fighters_availabilities, only: %i[update]
+
   resources :events, only: %i[index show edit update destroy] do
     resources :reviews, only: %i[create]
   end

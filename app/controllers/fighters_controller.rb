@@ -13,9 +13,8 @@ class FightersController < ApplicationController
     @fighter.user = current_user
     if @fighter.save
       # dashboard_path is a placeholder, waiting for fighter's profile (route by pages)
-      redirect_to dashboard_path # created
+      redirect_to fighter_path(@fighter), notice: "Congradulation! You just created your fighter's profile."
     else
-      p @fighter.errors
       redirect_to new_fighter_path, status: :unprocessable_entity
     end
   end
@@ -24,7 +23,7 @@ class FightersController < ApplicationController
 
   def update
     if @fighter.update(fighter_params)
-      redirect_to dashboard_path # :accepted
+      redirect_to dashboard_path, notice: "Your fighter's profile is updated." # :accepted
     else
       redirect_to edit_fighter_path, status: 422
     end
@@ -32,7 +31,7 @@ class FightersController < ApplicationController
 
   def destroy
     if @fighter.destroy
-      redirect_to dashboard_path
+      redirect_to dashboard_path, warning: "Your fighter's profile is deleted."
     else
       redirect_to dashboard_path, status: 422, warning: "Oups you cannot stop fighting!"
     end
@@ -51,9 +50,9 @@ class FightersController < ApplicationController
   def fighter_params
     params.require(:fighter).permit(
       :user_id,
-      :first_name, :last_name, :nickname, :birth_date, 
+      :first_name, :last_name, :nickname, :birth_date,
       :height, :weight, :fight_style, :description,
-      :price, :have_insurance, 
+      :price, :have_insurance,
       :photo
     )
   end

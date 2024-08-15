@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_13_151631) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_15_101008) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -60,6 +60,20 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_13_151631) do
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
+  create_table "fighter_weekly_availabilities", force: :cascade do |t|
+    t.bigint "fighter_id", null: false
+    t.boolean "monday", default: true
+    t.boolean "tuesday", default: true
+    t.boolean "wednesday", default: true
+    t.boolean "thursday", default: true
+    t.boolean "friday", default: true
+    t.boolean "saturday", default: true
+    t.boolean "sunday", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["fighter_id"], name: "index_fighter_weekly_availabilities_on_fighter_id"
+  end
+
   create_table "fighters", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "first_name"
@@ -79,10 +93,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_13_151631) do
 
   create_table "fighters_availabilities", force: :cascade do |t|
     t.bigint "fighter_id", null: false
-    t.time "start_time"
-    t.time "end_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_available", default: false
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.index ["fighter_id"], name: "index_fighters_availabilities_on_fighter_id"
   end
 
@@ -115,6 +130,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_13_151631) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "events", "fighters"
   add_foreign_key "events", "users"
+  add_foreign_key "fighter_weekly_availabilities", "fighters"
   add_foreign_key "fighters", "users"
   add_foreign_key "fighters_availabilities", "fighters"
   add_foreign_key "reviews", "events"
