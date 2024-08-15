@@ -13,6 +13,7 @@ class Event < ApplicationRecord
   validates :fight_type, presence: true, inclusion: { in: EVENT_TYPE, message: "%<value> is not a valid fight type" }
   validates :start_time, presence: true
   validate :validate_start_time
+  validate :validate_end_time
 
   validates :status, inclusion: { in: STATUS, message: "%<value> is not a valid status" }
 
@@ -27,6 +28,10 @@ class Event < ApplicationRecord
 
   def validate_start_time
     date_cannot_be_too_early(:start_time, message: "can't be a passed moment")
+  end
+
+  def validate_end_time
+    date_cannot_be_too_early(:end_time, post_quem: start_time, message: "can't before start time")
   end
 
   def validate_description
