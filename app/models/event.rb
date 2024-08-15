@@ -1,4 +1,6 @@
 class Event < ApplicationRecord
+  attr_accessor :duration
+  
   belongs_to :user
   belongs_to :fighter
   has_many :reviews, dependent: :nullify

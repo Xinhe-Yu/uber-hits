@@ -1,12 +1,19 @@
 class Fighter < ApplicationRecord
+  include PgSearch::Model
+  pg_search_scope :search_by_all_names,
+                  against: %i[first_name last_name nickname],
+                  using: {
+                    tsearch: { prefix: true }
+                  }
+
   belongs_to :user
   has_many :events, dependent: :nullify
   has_many :reviews, through: :events
-  has_many :fighters_availabilities, dependent: :destroy
   has_one :fighter_weekly_availability, dependent: :destroy
+  has_many :fighters_availabilities, dependent: :destroy
   has_one_attached :photo
 
-  after_create :create_fighter_weekly_availability
+  after_save :create_fighter_weekly_availability, if: :saved_change_to_id?
 
   validates :first_name, :last_name, :nickname, presence: true, length: { minimum: 1 }
   validates :nickname, uniqueness: true
@@ -24,6 +31,21 @@ class Fighter < ApplicationRecord
   }
   validate :cannot_have_only_whitespace
 
+  # Calculate average rating for the fighter
+  def average_rating
+    return 0 if reviews.empty?
+
+    reviews.average(:rating).round(1) # Adjust the rounding as needed
+  end
+
+  # Count the number of reviews for the fighter
+  def reviews_count
+    reviews.count
+  end
+
+  # def self.generate_arriving_disponibility
+  # end
+
   private
 
   def cannot_have_only_whitespace
@@ -40,6 +62,6 @@ class Fighter < ApplicationRecord
   end
 
   def create_fighter_weekly_availability
-    FighterWeeklyAvailability.create(fighter_id: id)
+    FighterWeeklyAvailability.create!(fighter: self)
   end
 end
