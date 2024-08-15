@@ -12,7 +12,7 @@
                 autofocus: true,
                 input_html: { autocomplete: "email" }%>
     <%= f.input :first_name,
-                required: false %>
+                required: true %>
     <%= f.input :last_name,
                 required: false %>
                 <%# delete this part when validates :description, allow_blank: true. cause normaly we don't ask user to add their description when they create their count  %>

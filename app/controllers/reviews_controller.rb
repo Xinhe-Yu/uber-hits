@@ -10,10 +10,9 @@ class ReviewsController < ApplicationController
     @review.event = @event
     @review.user_to_fighter = current_user == @event.user
     if @review.save
-      redirect_to event_path(@event)
+      redirect_to event_path(@event), notice: "You just leave a review!"
     else
-      p @review.errors
-      raise
+      redirect_to event_path(@event), alert: "Review couldn't be created."
     end
   end
 
