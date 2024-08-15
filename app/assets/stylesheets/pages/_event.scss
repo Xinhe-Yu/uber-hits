@@ -1,0 +1,39 @@
+form {
+  margin-top: 30px;
+  padding: 5px;
+}
+
+.description-container {
+  margin-bottom: 30px;
+}
+
+.private-container {
+  line-height: 10px;
+  margin-bottom: 30px;
+}
+
+i {
+  font-size: 12px;
+  color: rgb(109, 109, 109);
+  padding: 0;
+  margin-top: 0;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-flat {
+  color: white;
+  padding: 8px 24px;
+  border-radius: 4px;
+  background: #f8534b;
+  transition: background 0.3s ease;
+  margin: 0 auto;
+}
+
+.btn-flat:hover {
+  background: #ff362c;
+  color: white;
+}

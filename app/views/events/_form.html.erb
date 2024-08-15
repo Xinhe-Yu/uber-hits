@@ -3,28 +3,50 @@
                         controller: 'datepicker'
                       }
                     }) do |f| %>
-  <%= f.input :title, label: "Fight title" %>
-  <%= f.input :fight_type, collection: %w[programmed ambush] %>
-  <%= f.input :place %>
-  <%= f.input :start_time,
-              as: :string,
-              input_html: {
-                data: {
-                  datepicker_target: 'startTimeInput',
-                }
-              } %>
-  <%= f.input :duration, as: :integer %>
-  <%# <%= f.input :end_time,
-              as: :string,
-              input_html: {
-                data: {
-                  datepicker_target: 'endTimeInput',
-                }
-              } %>
-  <%= f.input :target %>
-  <%= f.input :description %>
-  <%= f.input :is_private, label: "Private fight" %>
-  <%= f.button :submit, "Book fight",
-                class:"btn btn-danger text-light me-3",
-                style:"width:100%" %>
+<div class="row">
+  <div class="col-md-6">
+    <%= f.input :title, label: "Fight title" %>
+  </div>
+  <div class="col-md-6">
+    <%= f.input :fight_type, collection: %w[programmed ambush] %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <%= f.input :place %>
+  </div>
+  <div class="col-md-6">
+    <%= f.input :target %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <%= f.input :start_time,
+                as: :string,
+                input_html: {
+                  data: {
+                    datepicker_target: 'startTimeInput',
+                  }
+                } %>
+  </div>
+  <div class="col-md-6">
+    <%= f.input :duration,
+                as: :integer%>
+  </div>
+</div>
+<div class="description-container">
+  <%= f.input :description,
+              as: :text,
+              :input_html => { 'rows' => 3 } %>
+</div>
+  <i>Feeling like fighting incognito or shining in the spotlight? Private or public, the choice is yours!</i>
+  <%= f.input :is_private,
+              label: "Private fight",
+              style: "margin-bottom:10px"
+   %>
+  <div class="button-container">
+    <%= f.button :submit, "Book fight",
+                  class:"btn-flat",
+                  style:"width:20%" %>
+  </div>
 <% end %>
