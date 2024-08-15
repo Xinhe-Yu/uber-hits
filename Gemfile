@@ -26,10 +26,11 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
-gem 'faker'
+gem "faker"
 
 gem "cloudinary"
 
+gem "pg_search", "~> 2.3", ">= 2.3.7"
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
