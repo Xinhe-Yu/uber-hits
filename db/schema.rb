@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_14_152912) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_15_091403) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -93,11 +93,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_14_152912) do
 
   create_table "fighters_availabilities", force: :cascade do |t|
     t.bigint "fighter_id", null: false
-    t.time "start_time"
-    t.time "end_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "is_available", default: false
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.index ["fighter_id"], name: "index_fighters_availabilities_on_fighter_id"
   end
 
