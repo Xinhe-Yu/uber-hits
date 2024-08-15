@@ -1,14 +1,30 @@
+.container {
+  margin-top: 120px;
+}
 .fighter-card {
-  width: 241px;
+  width: 260px;
   height: 440px;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
   .fighter-image {
-    padding: 1px;
+    padding: 2px;
     .fighter-img {
       border-radius: 10px;
       object-fit: cover;
     }
-    .fighter-stats {
-      top: 10px;
+    .fighter-height {
+      top: 183px;
+      right: 10px;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 5px;
+      padding: 3px 6px;
+      text-align: center;
+      .stat {
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+    }
+    .fighter-weight {
+      top: 217px;
       right: 10px;
       background-color: rgba(255, 255, 255, 0.8);
       border-radius: 5px;
@@ -20,20 +36,32 @@
       }
     }
   }
+
+  .bottom-card {
+    position: relative;
+    top: 15px;
+  }
+
+  .card-text {
+    font-size: 15px;
+    font-weight: 300;
+  }
+
   .price-pill {
-    background-color: #f8f9fa;
+    background-color: #18b838;
     font-weight: bold;
+    font-size: 14px;
   }
 }
 .map-container {
   position: fixed;
-  top: 60px; /* Adjust this to match your navbar height */
+  top: 96px;
   right: 0;
   bottom: 0;
-  width: 25%; /* Adjust the width as needed */
+  width: 30%;
   background-color: #f8f9fa;
   border-left: 1px solid #dee2e6;
-  z-index: 999; /* Ensure it stays above other elements */
+  // z-index: 999;
 
   .map-content {
     height: 100%;
@@ -46,8 +74,14 @@
 }
 
 .fighters-list {
-  margin-right: 25%; /* To ensure fighters don't overlap with the map */
+  display: grid;
+  justify-content: space-between;
+  justify-items: baseline;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 22px;
+  margin-right: 5%; /* To ensure fighters don't overlap with the map */
 }
+
 
 
 

@@ -9,22 +9,23 @@
   "https://partyanimals.com/media/avatars/thumbnails/avatars-19.webp",
   "https://partyanimals.com/media/avatars/thumbnails/avatars-20.webp"
 ] %>
-
-<div class="container-fluid">
+<div class="container-fluid mb-5">
   <div class="row">
     <div class="col-lg-9">
       <div class="fighters-header d-flex align-items-center justify-content-between mb-3">
         <%= render "fighters/search_bar" %>
       </div>
 
-      <div class="row fighters-list">
+      <div class="fighters-list">
         <% fighters.each do |fighter| %>
-          <div class="col-xl-4 col-md-6 my-3">
-            <div class="card h-100 fighter-card">
+          <div class="col-lg-4 col-md-6">
+            <div class="h-100 fighter-card">
               <div class="fighter-image position-relative">
-                <%= image_tag img_paths.sample, class: "card-img-top rounded fighter-img", alt: "#{fighter.nickname}'s profile photo" %>
-                <div class="fighter-stats position-absolute">
+                <%= image_tag img_paths.sample, class: "card-img-top rounded fighter-img p-1", alt: "#{fighter.nickname}'s profile photo" %>
+                <div class="fighter-height position-absolute">
                   <p class="stat mb-0"><%= "#{fighter.height}cm" %></p>
+                </div>
+                <div class="fighter-weight position-absolute">
                   <p class="stat mb-0"><%= "#{fighter.weight}kg" %></p>
                 </div>
               </div>
@@ -38,9 +39,9 @@
                   </div>
                 </div>
                 <p class="card-subtitle text-muted mb-2"><%= "#{fighter.fight_style}" %></p>
-                <p class="card-text text-muted"><%= truncate(fighter.description, length: 40) %></p>
-                <div class="d-flex justify-content-between align-items-center mt-auto">
-                  <p class="price-pill btn btn-light rounded-pill px-3 py-1"><%="💰 #{fighter.price}€/h" %></p>
+                <p class="card-text text-muted"><%= truncate(fighter.description, length: 50) %></p>
+                <div class="bottom-card d-flex justify-content-between align-items-baseline mt-auto">
+                  <p class="price-pill rounded-pill px-3 py-1"><%="💰 #{fighter.price}€/h" %></p>
                   <p class="total text-end text-muted small mb-0"><%= "#{fighter.price * @duration}€ au total" %></p>
                 </div>
               </div>
@@ -50,7 +51,6 @@
       </div>
     </div>
 
-    <!-- Map Column -->
     <div class="col-lg-3 p-0">
       <div class="map-container">
         <div class="map-content">
@@ -60,50 +60,3 @@
     </div>
   </div>
 </div>
-
-<!-- <% img_paths = [
-"https://partyanimals.com/media/avatars/thumbnails/avatars-1.webp",
-"https://partyanimals.com/media/avatars/thumbnails/avatars-3.webp",
-"https://partyanimals.com/media/avatars/thumbnails/avatars-6.webp",
-"https://partyanimals.com/media/avatars/thumbnails/avatars-9.webp",
-"https://partyanimals.com/media/avatars/thumbnails/avatars-10.webp",
-"https://partyanimals.com/media/avatars/thumbnails/avatars-11.webp",
-"https://partyanimals.com/media/avatars/thumbnails/avatars-16.webp",
-"https://partyanimals.com/media/avatars/thumbnails/avatars-19.webp",
-"https://partyanimals.com/media/avatars/thumbnails/avatars-20.webp"] %>
-
-<div class="row">
-  <% fighters.each do |fighter| %>
-    <div class="col-xl-4 col-md-6 my-1">
-      <div class="card" style="height:100%">
-        <%= render "shared/default_photo",
-                  item: fighter,
-                  default_img: img_paths.sample,
-                  class_name: "",
-                  alt: "#{fighter.nickname}'s profil photo" %>
-        <div class="card-body">
-          <h5 class="card-title">
-            <%= "#{fighter.first_name} #{fighter.last_name}" %>
-            <b><%="\"#{fighter.nickname}\"" %></b>
-          </h5>
-          <div class="d-flex justify-content-between mt-3 align-items-baseline" >
-            <p class="card-subtitle mb-2 text-body-secondary">
-            <%= "#{fighter.height} cm" if fighter.height %> | <%= "#{fighter.weight} kg" if fighter.weight %>
-            </p>
-            <p class="btn btn-success rounded-pill">
-              <%="💰 #{fighter.price}€/h" %>
-            </p>
-          </div>
-            <p class="card-text">
-              <%= fighter&.description %>
-            <br>
-              <%= link_to "+ see more", fighter_path(fighter), class:"badge text-bg-primary link-offset-2 link-underline link-underline-opacity-0 mt-3" %>
-              <% unless current_user && current_user.fighter && current_user.fighter.id == fighter.id %>
-                <%= link_to "> book an event", new_fighter_event_path(fighter), class:"badge text-bg-danger text-light link-offset-2 link-underline link-underline-opacity-0" %>
-              <% end %>
-            </p>
-        </div>
-      </div>
-    </div>
-  <% end %>
-</div> -->
