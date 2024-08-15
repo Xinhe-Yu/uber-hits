@@ -9,16 +9,17 @@ class User < ApplicationRecord
   has_one :fighter
   has_one_attached :photo
 
-  validates :first_name, :last_name, presence: true, length: { minimum: 1 }
-  validates :description, length: { minimum: 3 }, allow_blank: true
-  validate :cannot_have_only_whitespace
+  validates :first_name, presence: true, length: { minimum: 1 }
+  validate :validate_last_name
+  validate :validate_description
 
   private
 
-  def cannot_have_only_whitespace
-    if description.length.positive? && !description.match?(/\S/)
-      errors.add(:description, "cannot consist only of whitespaces")
-      return false
-    end
+  def validate_description
+    validate_field_cannot_have_only_whitespace(:description)
+  end
+
+  def validate_last_name
+    validate_field_cannot_have_only_whitespace(:description, min_length: 1)
   end
 end
