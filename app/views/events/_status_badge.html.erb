@@ -1,4 +1,4 @@
-<% if date.to_date < Date.today %>
+<% if date && date.to_date < Date.today %>
   <span class="badge text-bg-secondary">PASSED</span>
 <% end %>
 
