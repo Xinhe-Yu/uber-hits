@@ -2,6 +2,18 @@ class FightersController < ApplicationController
   before_action :set_fighter_by_user_id, only: %i[edit destroy]
   before_action :set_fighter, only: %i[show update]
 
+  def index
+    @fighters = Fighter.all
+    @duration = params[:duration].present? ? 1 : params[:duration].to_i
+    @fighters = @fighters.search_by_all_names(params[:name]) if params[:name].present? && !params[:name].empty?
+    return unless params[:date].present?
+
+    @fighters = @fighters
+                .joins(:fighters_availabilities)
+                .where(fighters_availabilities: { is_available: true })
+                .where("DATE(fighters_availabilities.start_time) = ?", params[:date])
+  end
+
   def show; end
 
   def new

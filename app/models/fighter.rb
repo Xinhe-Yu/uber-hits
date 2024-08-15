@@ -1,4 +1,11 @@
 class Fighter < ApplicationRecord
+  include PgSearch::Model
+  pg_search_scope :search_by_all_names,
+                  against: %i[first_name last_name nickname],
+                  using: {
+                    tsearch: { prefix: true }
+                  }
+
   belongs_to :user
   has_many :events, dependent: :nullify
   has_many :reviews, through: :events
@@ -27,6 +34,7 @@ class Fighter < ApplicationRecord
   # Calculate average rating for the fighter
   def average_rating
     return 0 if reviews.empty?
+
     reviews.average(:rating).round(1) # Adjust the rounding as needed
   end
 
@@ -35,8 +43,8 @@ class Fighter < ApplicationRecord
     reviews.count
   end
 
-  def self.generate_arriving_disponibility
-  end
+  # def self.generate_arriving_disponibility
+  # end
 
   private
 
