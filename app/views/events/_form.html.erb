@@ -13,7 +13,8 @@
                   datepicker_target: 'startTimeInput',
                 }
               } %>
-  <%= f.input :end_time,
+  <%= f.input :duration, as: :integer %>
+  <%# <%= f.input :end_time,
               as: :string,
               input_html: {
                 data: {
@@ -23,7 +24,7 @@
   <%= f.input :target %>
   <%= f.input :description %>
   <%= f.input :is_private, label: "Private event" %>
-  <%= f.button :submit,
+  <%= f.button :submit "Book fight",
                 class:"btn btn-danger text-light me-3",
                 style:"width:100%" %>
 <% end %>

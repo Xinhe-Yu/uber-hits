@@ -18,6 +18,7 @@ class EventsController < ApplicationController
     @event.user = current_user
     @event.fighter = @fighter
     @event.status = "pending"
+    @event.end_time = calcul_end_time
     if @event.save
       redirect_to root_path
     else
@@ -33,6 +34,7 @@ class EventsController < ApplicationController
   def edit; end
 
   def update
+    @event.end_time = calcul_end_time
     if @event.update(event_params)
       redirect_to dashboard_path
     else
@@ -57,7 +59,7 @@ class EventsController < ApplicationController
   def event_params
     params.require(:event).permit(
       :title, :description, :place,
-      :start_time, :end_time,
+      :start_time, :duration,
       :target, :fight_type,
       :is_private,
       :photo, :status
@@ -73,5 +75,9 @@ class EventsController < ApplicationController
     return true if @event.reviews.empty?
 
     @event.reviews[0].user_to_fighter != user
+  end
+
+  def calcul_end_time
+    event_params[:start_time].to_date + event_params[:duration].to_i.hours
   end
 end
