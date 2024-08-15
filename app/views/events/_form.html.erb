@@ -31,7 +31,12 @@
   </div>
   <div class="col-md-6">
     <%= f.input :duration,
-                as: :integer%>
+                as: :integer,
+                input_html: {
+                  min: 1,
+                  max: 6,
+                  placeholder:1
+                }%>
   </div>
 </div>
 <div class="description-container">
@@ -46,7 +51,6 @@
    %>
   <div class="button-container">
     <%= f.button :submit, "Book fight",
-                  class:"btn-flat",
-                  style:"width:20%" %>
+                  class:"btn-flat" %>
   </div>
 <% end %>
