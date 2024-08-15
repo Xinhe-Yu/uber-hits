@@ -5,6 +5,7 @@ class FightersController < ApplicationController
   def index
     @fighters = Fighter.all
     @duration = params[:duration].present? && !params[:duration].empty? ? params[:duration].to_i : 1
+    @fighters = @fighters.search_by_all_names(params[:name]) if params[:name].present? && !params[:name].empty?
     return unless params[:date].present?
 
     @fighters = @fighters
