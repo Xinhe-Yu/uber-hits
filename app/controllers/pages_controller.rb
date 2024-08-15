@@ -3,6 +3,7 @@ class PagesController < ApplicationController
 
   def home
     @fighters = Fighter.all
+    @duration = 1
   end
 
   def dashboard
