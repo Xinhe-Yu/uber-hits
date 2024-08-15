@@ -22,10 +22,10 @@
         </p>
         <hr class="mt-4">
         <div class="avatar-section">
-          <%= render "shared/default_photo", item: current_user, default_img: "https://partyanimals.com/media/avatars/avatars-2.png", class_name: "avatar", alt: "avatar" %>
+          <%= render "shared/default_photo", item: @fighter, default_img: "https://partyanimals.com/media/avatars/avatars-2.png", class_name: "avatar", alt: "avatar" %>
           <div class="notification-content">
             <h5>Fighter experience</h5>
-            <p>Fighter since X time</p>
+            <p>Fighter since <b><%= @fighter.accepted_passed_events %></b> time</p>
           </div>
         </div>
         <div>

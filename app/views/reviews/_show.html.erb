@@ -5,7 +5,7 @@
         <i class="fa-solid fa-star text-warning"></i>
       <% end %>
       <% if review.user_to_fighter %>
-        USER <%= render "shared/user_name", user: review.event.user %> says:
+        <%= render "shared/anonyme_name", user: review.event.user %> says:
       <% else %>
         FIGHTER <%= render "shared/fighter_name", fighter: review.event.fighter %> says:
       <% end %>

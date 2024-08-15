@@ -33,14 +33,18 @@ class Fighter < ApplicationRecord
 
   # Calculate average rating for the fighter
   def average_rating
-    return 0 if reviews.empty?
+    return 0 if reviews.empty? || reviews.where(user_to_fighter: true).empty?
 
-    reviews.average(:rating).round(1) # Adjust the rounding as needed
+    reviews.where(user_to_fighter: true).average(:rating).round(1) # Adjust the rounding as needed
   end
 
   # Count the number of reviews for the fighter
   def reviews_count
-    reviews.count
+    reviews.where(user_to_fighter: true).count
+  end
+
+  def accepted_passed_events
+    events.where(status: "accepted").where("start_time < ?", Time.current).count
   end
 
   # def self.generate_arriving_disponibility
