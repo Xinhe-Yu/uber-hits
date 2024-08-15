@@ -33,20 +33,35 @@
 
   <h2>My disponibility of 7 coming days</h2>
 <table class="table table-info table-striped-columns text-center">
+<% [0..6, 7..13].each do |scope| %>
   <thead>
     <tr>
-      <% @real_days.each do |day| %>
-        <th scope="col text-center"><%= day %></th>
+      <% @real_days[scope].each do |day| %>
+        <th scope="col text-center"><%= day.strftime("%a %d %b") %></th>
       <% end %>
     </tr>
-  </thead>
-  <tbody>
+  <thead>
+    <tbody>
     <tr>
-      <% 7.times do %>
+      <% @real_days[scope].each do |day| %>
+        <% slot = @availabilities.find_by("DATE(start_time) = ?", day) %>
+        <th>
 
+        <% if slot %>
+          <%= button_to fighters_availability_path(slot, fighters_availability: { is_available: !slot.is_available }),
+          method: :patch,
+          class: slot.is_available ? "border border-0 badge text-bg-success text-light link-offset-2 link-underline link-underline-opacity-0" : "border border-0 badge text-bg-secondary text-light link-offset-2 link-underline link-underline-opacity-0" do %>
+        <%= slot.is_available ? "Available" : "Unavailable" %>
+        <% end %>
+        <% end %>
+
+        </th>
       <% end %>
     </tr>
   </tbody>
+
+<% end %>
+
 </table>
   </div>
 </div>

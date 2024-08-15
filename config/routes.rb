@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
 
   resources :fighter_weekly_availabilities, only: %i[update]
+  resources :fighters_availabilities, only: %i[update]
 
   resources :events, only: %i[index show edit update destroy] do
     resources :reviews, only: %i[create]
