@@ -19,33 +19,35 @@
       <div class="fighters-list">
         <% fighters.each do |fighter| %>
           <div class="col-lg-4 col-md-6">
-            <div class="h-100 fighter-card">
-              <div class="fighter-image position-relative">
-                <%= image_tag img_paths.sample, class: "card-img-top rounded fighter-img p-1", alt: "#{fighter.nickname}'s profile photo" %>
-                <div class="fighter-height position-absolute">
-                  <p class="stat mb-0"><%= "#{fighter.height}cm" %></p>
-                </div>
-                <div class="fighter-weight position-absolute">
-                  <p class="stat mb-0"><%= "#{fighter.weight}kg" %></p>
-                </div>
-              </div>
-              <div class="card-body d-flex flex-column p-3">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                  <h5 class="card-title mb-0"><%= "#{fighter.nickname}" %></h5>
-                  <div class="rating">
-                    <span><i class="fa-solid fa-star"></i></span>
-                    <span><%= fighter.average_rating %></span>
-                    <span>(<%= fighter.reviews_count %>)</span>
+            <%= link_to fighter_path(fighter), class: "text-decoration-none text-dark" do %>
+              <div class="h-100 fighter-card">
+                <div class="fighter-image position-relative">
+                  <%= image_tag img_paths.sample, class: "card-img-top rounded fighter-img p-1", alt: "#{fighter.nickname}'s profile photo" %>
+                  <div class="fighter-height position-absolute">
+                    <p class="stat mb-0"><%= "#{fighter.height}cm" %></p>
+                  </div>
+                  <div class="fighter-weight position-absolute">
+                    <p class="stat mb-0"><%= "#{fighter.weight}kg" %></p>
                   </div>
                 </div>
-                <p class="card-subtitle text-muted mb-2"><%= "#{fighter.fight_style}" %></p>
-                <p class="card-text text-muted"><%= truncate(fighter.description, length: 50) %></p>
-                <div class="bottom-card d-flex justify-content-between align-items-baseline mt-auto">
-                  <p class="price-pill rounded-pill px-3 py-1"><%="💰 #{fighter.price}€/h" %></p>
-                  <p class="total text-end text-muted small mb-0"><%= "#{fighter.price * @duration}€ au total" %></p>
+                <div class="card-body d-flex flex-column p-3">
+                  <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h5 class="card-title mb-0"><%= "#{fighter.nickname}" %></h5>
+                    <div class="rating">
+                      <span><i class="fa-solid fa-star"></i></span>
+                      <span><%= fighter.average_rating %></span>
+                      <span>(<%= fighter.reviews_count %>)</span>
+                    </div>
+                  </div>
+                  <p class="card-subtitle text-muted mb-2"><%= "#{fighter.fight_style}" %></p>
+                  <p class="card-text text-muted"><%= truncate(fighter.description, length: 50) %></p>
+                  <div class="bottom-card d-flex justify-content-between align-items-baseline mt-auto">
+                    <p class="price-pill rounded-pill px-3 py-1"><%="💰 #{fighter.price}€/h" %></p>
+                    <p class="total text-end text-muted small mb-0"><%= "#{fighter.price * @duration}€ au total" %></p>
+                  </div>
                 </div>
               </div>
-            </div>
+            <% end %>
           </div>
         <% end %>
       </div>
