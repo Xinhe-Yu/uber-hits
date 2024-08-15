@@ -1,0 +1,151 @@
+.fighter-card {
+  width: 241px;
+  height: 440px;
+  .fighter-image {
+    padding: 1px;
+    .fighter-img {
+      border-radius: 10px;
+      object-fit: cover;
+    }
+    .fighter-stats {
+      top: 10px;
+      right: 10px;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 5px;
+      padding: 3px 6px;
+      text-align: center;
+      .stat {
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+    }
+  }
+  .price-pill {
+    background-color: #f8f9fa;
+    font-weight: bold;
+  }
+}
+.map-container {
+  position: fixed;
+  top: 60px; /* Adjust this to match your navbar height */
+  right: 0;
+  bottom: 0;
+  width: 25%; /* Adjust the width as needed */
+  background-color: #f8f9fa;
+  border-left: 1px solid #dee2e6;
+  z-index: 999; /* Ensure it stays above other elements */
+
+  .map-content {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #6c757d;
+  }
+}
+
+.fighters-list {
+  margin-right: 25%; /* To ensure fighters don't overlap with the map */
+}
+
+
+
+// .container-fluid {
+//   padding: 0;
+// }
+
+// .fighters-header {
+//   margin-bottom: 20px;
+
+//   .form-control {
+//     width: 30%;
+//     margin-right: 10px;
+//   }
+// }
+
+// .fighter-card {
+//   border: 1px solid #e6e6e6;
+//   border-radius: 8px;
+//   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+//   .fighter-image {
+//     height: 200px;
+//     overflow: hidden;
+//     border-bottom: 1px solid #e6e6e6;
+
+//     img {
+//       width: 100%;
+//       height: 100%;
+//       object-fit: cover;
+//     }
+//   }
+
+//   .card-body {
+//     padding: 15px;
+
+//     .card-title {
+//       font-weight: bold;
+//       font-size: 1.2em;
+//       color: #333;
+//     }
+
+//     .rating {
+//       display: flex;
+//       align-items: center;
+
+//       span:first-child {
+//         font-weight: bold;
+//         color: #ffa500;
+//         margin-right: 5px;
+//       }
+
+//       span:last-child {
+//         color: #6c757d;
+//         padding-left: 5px;
+//       }
+//     }
+
+//     .card-subtitle {
+//       font-size: 1em;
+//       color: #6c757d;
+//       margin-bottom: 10px;
+//     }
+
+//     .card-text {
+//       font-size: 0.9em;
+//       color: #495057;
+//       margin-bottom: 10px;
+//     }
+
+//     .price {
+//       font-weight: bold;
+//       color: #28a745;
+//       font-size: 1em;
+//     }
+
+//     .total {
+//       font-size: 0.9em;
+//       color: #6c757d;
+//     }
+//   }
+// }
+
+// .map-container {
+//   position: fixed;
+//   top: 60px; /* Adjust this to match your navbar height */
+//   right: 0;
+//   bottom: 0;
+//   width: 25%;
+//   background-color: #f8f9fa;
+//   border-left: 1px solid #dee2e6;
+
+//   .map-content {
+//     height: 100%;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     font-size: 24px;
+//     color: #6c757d;
+//   }
+// }
