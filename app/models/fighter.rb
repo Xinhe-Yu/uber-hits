@@ -24,8 +24,18 @@ class Fighter < ApplicationRecord
   }
   validate :cannot_have_only_whitespace
 
-  def self.generate_arriving_disponibility
+  # Calculate average rating for the fighter
+  def average_rating
+    return 0 if reviews.empty?
+    reviews.average(:rating).round(1) # Adjust the rounding as needed
+  end
 
+  # Count the number of reviews for the fighter
+  def reviews_count
+    reviews.count
+  end
+
+  def self.generate_arriving_disponibility
   end
 
   private
