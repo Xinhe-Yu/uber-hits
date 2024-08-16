@@ -4,6 +4,10 @@ class Event < ApplicationRecord
   belongs_to :user
   belongs_to :fighter
   has_many :reviews, dependent: :nullify
+  has_many :fighters_availabilities, through: :fighter
+
+  after_update :update_fighters_availabilities, if: :accepted_status?
+
   has_one_attached :photo
 
   EVENT_TYPE = %w[programmed ambush]
@@ -36,5 +40,16 @@ class Event < ApplicationRecord
 
   def validate_description
     validate_field_cannot_have_only_whitespace(:description)
+  end
+
+  def accepted_status?
+    saved_change_to_status? && status == "accepted"
+  end
+
+  def update_fighters_availabilities
+    return unless start_time.present?
+
+    event_date = start_time.to_date
+    fighters_availabilities.where("DATE(start_time) = ?", event_date).update_all(is_available: false)
   end
 end

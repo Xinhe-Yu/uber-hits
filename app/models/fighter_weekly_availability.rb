@@ -6,9 +6,9 @@ class FighterWeeklyAvailability < ApplicationRecord
   private
 
   def create_fighters_availabilities
-    today = DateTime.now
-    (0..27).to_a.each do |i|
-      FightersAvailability.create!(start_time: today + i, is_available: true, fighter: self.fighter)
+    today = Date.today.to_time
+    (0..20).to_a.each do |i|
+      FightersAvailability.create!(start_time: today + i.days, is_available: true, fighter: self.fighter)
     end
   end
 end

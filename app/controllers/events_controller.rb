@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[show edit update destroy]
+  before_action :set_fighter, only: %i[new create]
   skip_before_action :authenticate_user!, only: :index
 
   def index
@@ -8,29 +9,19 @@ class EventsController < ApplicationController
   end
 
   def new
-    @fighter = Fighter.find(params[:fighter_id])
     @event = Event.new
   end
 
   def create
-    @fighter = Fighter.find(params[:fighter_id])
     @event = Event.new(event_params)
     @event.user = current_user
     @event.fighter = @fighter
     @event.status = "pending"
-    p "start time before"
-    p event_params[:start_time]
     @event.end_time = calcul_end_time
     if @event.save
       redirect_to event_path(@event), notice: "You just created an event with #{@fighter.nickname}"
     else
       render :new, status: :unprocessable_entity
-      p @event.errors
-      p "start"
-      p @event.start_time
-      p "end"
-      p @event.end_time
-
     end
   end
 
@@ -42,7 +33,7 @@ class EventsController < ApplicationController
   def edit; end
 
   def update
-    @event.end_time = calcul_end_time
+    @event.end_time = calcul_end_time if event_params[:duration].present?
     if @event.update(event_params)
       redirect_to event_path(@event), notice: "You succesfully modified the event."
     else
@@ -62,6 +53,10 @@ class EventsController < ApplicationController
 
   def set_event
     @event = Event.find(params[:id])
+  end
+
+  def set_fighter
+    @fighter = Fighter.find(params[:fighter_id])
   end
 
   def event_params

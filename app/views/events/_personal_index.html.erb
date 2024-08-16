@@ -87,6 +87,10 @@
                 <%= event&.place %>
               </p>
               <%= link_to "See more", event_path(event), class:"badge text-bg-primary text-light link-offset-2 link-underline link-underline-opacity-0" %>
+                            <%= button_to "Pending the invitation",
+                          event_path(event, event: { status: "pending"}),
+                          method: :patch,
+                          class: "border border-0 badge text-bg-success text-light link-offset-2 link-underline link-underline-opacity-0" %>
             </div>
           </div>
         </div>
