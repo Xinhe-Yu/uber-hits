@@ -23,6 +23,15 @@ class FightersController < ApplicationController
 
   def show
     @event = Event.new
+    @fighter = Fighter.find(params[:id])
+    # puts @fighter
+    @markers = [
+      {
+        lat: @fighter.latitude,
+        lng: @fighter.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: { fighter: @fighter })
+      }
+    ]
   end
 
   def new
