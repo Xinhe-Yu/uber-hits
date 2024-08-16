@@ -18,4 +18,18 @@ class ApplicationRecord < ActiveRecord::Base
     value = send(field_name)
     errors.add(field_name, message || "can't before #{post_quem}") if value < post_quem
   end
+
+  def time_range
+    [[1, "second"], [60, "minute"], [60 * 60, "hour"],
+     [60 * 60 * 24, "day"], [60 * 60 * 24 * 7, "week"],
+     [Float::INFINITY, "more than one week"]]
+  end
+
+  def time_interval(target_time, before: true)
+    interval = (before ? Time.current - target_time : target_time - Time.current).round
+    i = time_range.find_index { |tuple| tuple[0] > interval }
+    res = "#{interval / time_range[i - 1][0]} #{time_range[i - 1][1]}"
+    res = "#{res}s" unless res.to_i == 1
+    before ? "#{res} ago" : "in #{res}"
+  end
 end

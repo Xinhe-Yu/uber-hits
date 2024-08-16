@@ -1,0 +1,29 @@
+    <% if fighter_events[1] %>
+      <h3>Your coming events!</h3>
+      <% fighter_events[1].each do |event| %>
+        <div class="col-xl-4 col-md-6 my-1">
+          <div class="card" style="height:100%">
+            <%= render "shared/default_photo",
+                        item: event,
+                        default_img: img_paths.sample,
+                        class_name: "",
+                        alt: "#{event.title}'s image" %>
+            <div class="card-body">
+              <h5 class="card-title">
+                <%= event.title %>
+                <%= render "events/status_badge", status: event.status, date: event.end_time %>
+
+              </h5>
+              <p class="card-text">
+                <%= event&.place %>
+              </p>
+              <%= link_to "See more", event_path(event), class:"badge text-bg-primary text-light link-offset-2 link-underline link-underline-opacity-0" %>
+                            <%= button_to "Pending the invitation",
+                          event_path(event, event: { status: "pending"}),
+                          method: :patch,
+                          class: "border border-0 badge text-bg-success text-light link-offset-2 link-underline link-underline-opacity-0" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>

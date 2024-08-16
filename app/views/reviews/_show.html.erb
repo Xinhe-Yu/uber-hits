@@ -6,7 +6,7 @@
       <% else %>
         FIGHTER <%= render "shared/fighter_name", fighter: review.event.fighter %>
       <% end %>
-      <span class="badge bg-secondary-subtle text-secondary-emphasis rounded-pill">      <%= review.passed_time %></span>
+      <span class="badge bg-secondary-subtle text-secondary-emphasis rounded-pill"><%= review.passed_time %></span>
     <h5 class="card-subtitle mb-2">
       <% review.rating.times do %>
         <i class="fa-solid fa-star text-warning"></i>

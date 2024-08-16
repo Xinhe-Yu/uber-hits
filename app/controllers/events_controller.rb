@@ -70,7 +70,7 @@ class EventsController < ApplicationController
   end
 
   def waiting_for_comment
-    return false if @event.end_time.to_datetime < Time.now
+    return false if @event.end_time.to_datetime > Time.now
 
     is_user = @event.user == current_user
     is_fighter = @event.fighter == current_user.fighter
@@ -79,6 +79,8 @@ class EventsController < ApplicationController
 
     @event.reviews[0].user_to_fighter != is_user
   end
+
+
 
   def calcul_end_time
     duration = event_params[:duration].empty? ? 1 : event_params[:duration].to_i

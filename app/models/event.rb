@@ -24,6 +24,16 @@ class Event < ApplicationRecord
   validate :user_cannot_be_fighter
   validate :validate_description
 
+  def duration_hours
+    ((end_time - start_time) / 3600).round
+  end
+
+  def waiting_time
+    return unless start_time > Time.current
+
+    time_interval(start_time.to_time, before: false)
+  end
+
   private
 
   def user_cannot_be_fighter
