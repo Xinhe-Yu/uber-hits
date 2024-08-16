@@ -130,6 +130,7 @@ user14 = User.create!(
 puts "Cooking up some fighters..."
 
 
+
 fighter1 = Fighter.create!(
   user: user1,
   first_name: user1.first_name,
@@ -142,9 +143,12 @@ fighter1 = Fighter.create!(
   description: "A legend on the streets, feared for his raw power and iron-clad fists.",
   price: 500.00,
   have_insurance: true,
-  address: "16 Villa Gaudelet, Paris"
+  address: "16 Villa Gaudelet, Paris",
+  latitude: 48.864716,
+  longitude: 2.349014,
+  image_path: "1"
 )
-sleep(5)
+
 fighter2 = Fighter.create!(
   user: user2,
   first_name: user2.first_name,
@@ -157,10 +161,11 @@ fighter2 = Fighter.create!(
   description: "Silent, deadly, and always one step ahead. If you see him, it's too late.",
   price: 750.00,
   have_insurance: false,
-  address: "10 Rue de Rivoli, Paris"
+  address: "10 Rue de Rivoli, Paris",
+  latitude: 48.855503,
+  longitude: 2.352133,
+  image_path: "2"
 )
-sleep(5)
-
 
 fighter3 = Fighter.create!(
   user: user3,
@@ -174,9 +179,11 @@ fighter3 = Fighter.create!(
   description: "He rules the streets with quick reflexes and a bottle of Cola.",
   price: 600.00,
   have_insurance: true,
-  address: "25 Rue du Faubourg Saint-Antoine, Paris"
+  address: "25 Rue du Faubourg Saint-Antoine, Paris",
+  latitude: 48.852968,
+  longitude: 2.369903,
+  image_path: "3"
 )
-sleep(5)
 
 fighter4 = Fighter.create!(
   user: user4,
@@ -190,9 +197,11 @@ fighter4 = Fighter.create!(
   description: "Sharper than a knife, this fighter’s elbows and knees leave scars.",
   price: 550.00,
   have_insurance: false,
-  address: "50 Avenue de Paris, Vincennes"
+  address: "50 Avenue de Paris, Vincennes",
+  latitude: 48.8452571,
+  longitude: 2.432615,
+  image_path: "4"
 )
-sleep(5)
 
 fighter5 = Fighter.create!(
   user: user5,
@@ -206,9 +215,11 @@ fighter5 = Fighter.create!(
   description: "A whirlwind of kicks and spins, unstoppable once he gets going.",
   price: 700.00,
   have_insurance: true,
-  address: "32 Rue de la Convention, Paris"
+  address: "32 Rue de la Convention, Paris",
+  latitude: 48.8445518,
+  longitude: 2.2800784,
+  image_path: "16"
 )
-sleep(5)
 
 fighter6 = Fighter.create!(
   user: user6,
@@ -222,9 +233,11 @@ fighter6 = Fighter.create!(
   description: "A relentless grappler from Chechnya, feared for his brutal ground game... And you know, I'm from Chechnya",
   price: 1000.00,
   have_insurance: true,
-  address: "5 Place des Vosges, Paris"
+  address: "5 Place des Vosges, Paris",
+  latitude: 48.8551115,
+  longitude: 2.3644399,
+  image_path: "6"
 )
-sleep(5)
 
 fighter7 = Fighter.create!(
   user: user7,
@@ -238,9 +251,11 @@ fighter7 = Fighter.create!(
   description: "An unpredictable and versatile fighter from the USA, known for his reach and technique.",
   price: 1500.00,
   have_insurance: true,
-  address: "45 Avenue des Champs-Élysées, Paris"
+  address: "45 Avenue des Champs-Élysées, Paris",
+  latitude: 48.867495,
+  longitude: 2.317430,
+  image_path: "7"
 )
-sleep(5)
 
 fighter8 = Fighter.create!(
   user: user13,
@@ -254,9 +269,11 @@ fighter8 = Fighter.create!(
   description: "A flashy striker from Mexico in Paris, known for his great hairs, kicks and fast hands.",
   price: 800.00,
   have_insurance: false,
-  address: "60 Rue de Belleville, Paris"
+  address: "60 Rue de Belleville, Paris",
+  latitude: 48.874048,
+  longitude: 2.379859,
+  image_path: "8"
 )
-sleep(5)
 
 fighter9 = Fighter.create!(
   user: user8,
@@ -270,9 +287,11 @@ fighter9 = Fighter.create!(
   description: "A powerful and technical fighter from China, dominating her opponents with sheer strength.",
   price: 900.00,
   have_insurance: true,
-  address: "12 Boulevard Haussmann, Paris"
+  address: "12 Boulevard Haussmann, Paris",
+  latitude: 48.875328,
+  longitude: 2.329027,
+  image_path: "9"
 )
-sleep(5)
 
 fighter10 = Fighter.create!(
   user: user8,
@@ -286,9 +305,11 @@ fighter10 = Fighter.create!(
   description: "A smooth-moving heavyweight from France that will casser ta bouche si tu parles trop.",
   price: 1400.00,
   have_insurance: true,
-  address: "16 Rue du Chemin Vert, Paris"
+  address: "16 Rue du Chemin Vert, Paris",
+  latitude: 48.859964,
+  longitude: 2.377573,
+  image_path: "13"
 )
-sleep(5)
 
 # Create Events happening between 10/05/2024 and 10/08/2024
 puts "Creating events..."
