@@ -1,34 +1,27 @@
-<% img_paths = [
-"https://partyanimals.com/media/screenshots/thumbnails/media-image-small-6.jpg",
-"https://partyanimals.com/media/screenshots/thumbnails/media-image-small-7.jpg",
-"https://partyanimals.com/media/screenshots/thumbnails/media-image-small-9.jpg"
-] %>
+
 <div class="container">
-  <h2>Coming Events...</h2>
   <div class="row">
-    <% @events.each do |event| %>
-      <div class="col-xl-4 col-md-6 my-1">
-        <div class="card" style="height:100%">
-          <%= render "shared/default_photo",
-                    item: event,
-                    default_img: img_paths.sample,
-                    class_name: "",
-                    alt: "#{event.title}'s image" %>
-          <div class="card-body">
-            <h5 class="card-subtitle mb-2 text-body-secondary">
-              <%= "#{event.fighter.first_name} #{event.fighter.last_name} \"#{event.fighter.nickname}\"" %>
-            </h5>
-            <h5 class="card-title">
-              Will Participate: <%= event.title %>
-            </h5>
-            <p class="card-text">
-              <i class="fa-solid fa-location-dot"></i> <%= event&.place %>
-            </p>
-            <%= link_to "See more", event_path(event), class:"badge text-bg-primary text-light link-offset-2 link-underline link-underline-opacity-0" %>
-          </div>
-        </div>
-      </div>
+  <% unless @events[0].empty? %>
+  <h2>Current Happenings 🔥🔥🔥</h2>
+    <% @events[0].each do |event| %>
+      <%= render 'events/card', event: event, status: :ongoing %>
+    <% end %>
   <% end %>
+
+  <% unless @events[1].empty? %>
+  <h2>Coming Events...</h2>
+    <% @events[1].each do |event| %>
+      <%= render 'events/card', event: event, status: :coming %>
+    <% end %>
+  <% end %>
+
+  <% unless @events[2].empty? %>
+  <h2>Passed Events</h2>
+    <% @events[2].each do |event| %>
+      <%= render 'events/card', event: event, status: :passed %>
+    <% end %>
+  <% end %>
+
   </div>
 
 </div>

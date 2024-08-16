@@ -6,6 +6,9 @@ class EventsController < ApplicationController
   def index
     # waiting for is_private colomn for events' table
     @events = Event.where(is_private: false).where(status: "accepted")
+    @events = [@events.where('end_time > ?', Time.current).where('start_time < ?', Time.current),
+               @events.where('start_time > ?', Time.current),
+               @events.where('end_time < ?', Time.current)]
   end
 
   def new
@@ -79,8 +82,6 @@ class EventsController < ApplicationController
 
     @event.reviews[0].user_to_fighter != is_user
   end
-
-
 
   def calcul_end_time
     duration = event_params[:duration].empty? ? 1 : event_params[:duration].to_i
