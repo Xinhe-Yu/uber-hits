@@ -9,7 +9,7 @@
     <div class="p-2 event-image fs-5">
       <%= render "shared/default_photo",
                 item: @event,
-                default_img: "https://partyanimals.com/media/screenshots/media-image-9.jpg",
+                path: ["https://partyanimals.com/media/screenshots/media-image-", ".jpg"],
                 alt: "#{@event.title}'s image" %>
       <%= render "events/status_badge",
                   status: @event.status,
@@ -19,7 +19,7 @@
     <div class="p-2 event-image">
       <%= render "shared/default_photo",
                   item: @event.fighter,
-                  default_img: "https://partyanimals.com/media/avatars/thumbnails/avatars-12.webp",
+                  path: ["https://partyanimals.com/media/avatars/thumbnails/avatars-", ".webp"],
                   alt: "#{@event.fighter.nickname}'s image" %>
     </div>
   </div>

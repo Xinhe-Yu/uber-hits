@@ -5,7 +5,11 @@
       <div class="fighter-infos">
         <div class="d-flex fighter-photos">
           <div class="col-8">
-            <img src="https://partyanimals.com/media/avatars/thumbnails/avatars-10.webp" alt="img fighter" width=97% height =100%>
+          <%= render "shared/default_photo",
+            item: @fighter,
+            path: ["https://partyanimals.com/media/avatars/thumbnails/avatars-", ".webp"],
+            alt: "#{@fighter.nickname}'s image",
+            class_name: "card-img-top rounded fighter-img p-1", alt: "#{@fighter.nickname}'s profile photo" %>
           </div>
           <div class="col-4">
             <img src="https://partyanimals.com/media/avatars/thumbnails/avatars-12.webp" alt="img fighter" width=97% class="mb-3">
@@ -22,7 +26,7 @@
         </p>
         <hr class="mt-4">
         <div class="avatar-section">
-          <%= render "shared/default_photo", item: @fighter, default_img: "https://partyanimals.com/media/avatars/avatars-2.png", class_name: "avatar", alt: "avatar" %>
+          <%= render "shared/default_photo", item: @fighter, path: ["https://partyanimals.com/media/avatars/thumbnails/avatars-", ".webp"], class_name: "avatar", alt: "avatar" %>
           <div class="notification-content">
             <h5>Fighter experience</h5>
             <p>I have completed <b><%= @fighter.accepted_passed_events %></b> fight <%= @fighter.accepted_passed_events > 1 ? "s" : "" %></p>

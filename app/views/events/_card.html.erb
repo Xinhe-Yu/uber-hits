@@ -1,4 +1,4 @@
-<% img_paths = [
+<%# <% img_paths = [
 "https://partyanimals.com/media/screenshots/media-image-5.jpg",
 "https://partyanimals.com/media/screenshots/media-image-6.jpg",
 "https://partyanimals.com/media/screenshots/media-image-7.jpg",
@@ -17,7 +17,7 @@
         <div class="uh-image">
           <%= render "shared/default_photo",
                     item: event,
-                    default_img: img_paths.sample,
+                    path: ["https://partyanimals.com/media/screenshots/media-image-", ".jpg"],
                     alt: "#{event.title}'s image" %>
           <% if visitor == "user" %>
             <%= render "events/status_badge", status: event.status, class_name: "status-badge-in-card" %>
