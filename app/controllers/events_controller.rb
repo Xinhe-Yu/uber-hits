@@ -18,11 +18,19 @@ class EventsController < ApplicationController
     @event.user = current_user
     @event.fighter = @fighter
     @event.status = "pending"
+    p "start time before"
+    p event_params[:start_time]
     @event.end_time = calcul_end_time
     if @event.save
       redirect_to event_path(@event), notice: "You just created an event with #{@fighter.nickname}"
     else
       render :new, status: :unprocessable_entity
+      p @event.errors
+      p "start"
+      p @event.start_time
+      p "end"
+      p @event.end_time
+
     end
   end
 
@@ -78,6 +86,9 @@ class EventsController < ApplicationController
   end
 
   def calcul_end_time
-    event_params[:start_time].to_date + event_params[:duration].to_i.hours
+    duration = event_params[:duration].empty? ? 1 : event_params[:duration].to_i
+    p "start time type"
+    p event_params[:start_time]
+    Time.zone.parse(event_params[:start_time]) + duration.hours
   end
 end
