@@ -1,0 +1,61 @@
+<% img_paths = [
+"https://partyanimals.com/media/screenshots/media-image-5.jpg",
+"https://partyanimals.com/media/screenshots/media-image-6.jpg",
+"https://partyanimals.com/media/screenshots/media-image-7.jpg",
+"https://partyanimals.com/media/screenshots/media-image-9.jpg"
+] %>
+<% verbs = {
+  passed: "engaged in",
+  ongoing: "is engaging in",
+  coming: "will engage in"
+} %>
+<% visitor = visitor || "public" %>
+
+      <div class="event-card-container col-xl-4 col-md-6 my-1">
+                <%= link_to event_path(event), class:"all-inherit" do %>
+        <div class="uh-card h-100">
+        <div class="uh-image">
+          <%= render "shared/default_photo",
+                    item: event,
+                    default_img: img_paths.sample,
+                    alt: "#{event.title}'s image" %>
+        </div>
+
+          <div class="uh-card-body card-body">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <h5 class="card-title mb-0 text-body-secondary">
+            <% if visitor == "public" %>
+              <%= event.fighter.nickname %>
+            <% elsif visitor == "fighter" %>
+              <%= event.user.first_name %>
+            <% end %>
+            </h5>
+            <% if status = "passed" %>
+              <span><%= event.start_time.to_date %></span>
+            <% else %>
+              <span class="badge"></span>
+            <% end %>
+          </div>
+            <p class="card-subtitle text-muted mb-2">
+            <% if visitor == "public" %>
+              <%= verbs[status.to_sym] %>
+            <% elsif visitor == "fighter" %>
+              invited you to
+            <% end %>
+              <%= event.title %>
+            </p>
+            <p class="card-text text-muted">
+              <%= truncate(event.description, length: 50) %>
+            </p>
+            <% unless event.place.empty? %>
+            <p class="card-text">
+              <i class="fa-solid fa-location-dot"></i> <%= event&.place %>
+            </p>
+            <% end %>
+            <p class="btn btn-flat px-3 py-1 text-center text-light event-button">
+            see more details
+            </p>
+          </div>
+          <% end %>
+        </div>
+      </div>
