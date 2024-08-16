@@ -6,10 +6,14 @@
                     }) do |f| %>
 <div class="row">
   <div class="col-md-6">
-    <%= f.input :title, label: "Fight title" %>
+    <p>Fight title</p>
+    <%= f.input :title, label: false %>
   </div>
   <div class="col-md-6">
-    <%= f.input :fight_type, collection: %w[programmed ambush] %>
+    <p>Fight type</p>
+    <%= f.input :fight_type,
+                collection: %w[programmed ambush],
+                label: false %>
   </div>
 </div>
 <div class="row">
@@ -22,8 +26,10 @@
 </div>
 <div class="row">
   <div class="col-md-6">
+    <p>Start time</p>
     <%= f.input :start_time,
                 as: :string,
+                label: false,
                 input_html: {
                   data: {
                     datepicker_target: 'startTimeInput',
@@ -31,13 +37,22 @@
                 } %>
   </div>
   <div class="col-md-6">
-    <%= f.input :duration,
-                as: :integer,
-                input_html: {
+    <p>Duration</p>
+    <%# <%= f.label :duration,
+                required: true,
+                label:false,
+                class: 'form-label' %>
+    <div class="input-group">
+      <%= f.input_field :duration,
+                  as: :integer,
                   min: 1,
                   max: 6,
-                  placeholder:1
-                }%>
+                  placeholder: "1",
+                  class:'form-control' %>
+      <div class="input-group-append">
+        <span class="input-group-text">hours</span>
+      </div>
+    </div>
   </div>
 </div>
 <div class="description-container">
