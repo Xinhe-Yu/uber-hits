@@ -49,6 +49,9 @@ class Fighter < ApplicationRecord
     events.where(status: "accepted").where("start_time < ?", Time.current).count
   end
 
+  def rounded_price
+    price.round
+  end
   # def self.generate_arriving_disponibility
   # end
 
