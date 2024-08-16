@@ -496,7 +496,7 @@ event13 = Event.create!(
   fighter: fighter8,
   status: "accepted",
   is_private: false,
-  image_path: "3"
+  image_path: "5"
 )
 
 event14 = Event.create!(
@@ -511,7 +511,7 @@ event14 = Event.create!(
   fighter: fighter9,
   status: "accepted",
   is_private: true,
-  image_path: "6"
+  image_path: "8"
 )
 
 event15 = Event.create!(
@@ -526,7 +526,7 @@ event15 = Event.create!(
   fighter: fighter10,
   status: "pending",
   is_private: false,
-  image_path: "8"
+  image_path: "10"
 )
 
 event16 = Event.create!(
@@ -541,7 +541,7 @@ event16 = Event.create!(
   fighter: fighter10,
   status: "accepted",
   is_private: false,
-  image_path: "3"
+  image_path: "12"
 )
 
 event17 = Event.create!(
@@ -556,7 +556,7 @@ event17 = Event.create!(
   fighter: fighter9,
   status: "accepted",
   is_private: false,
-  image_path: "3"
+  image_path: "8"
 )
 
 # Create 15 Reviews
