@@ -55,6 +55,22 @@
               <i class="fa-solid fa-location-dot"></i> <%= event&.place %>
             </p>
             <% end %>
+            <% if visitor == "fighter" %>
+            <div class="row btn-group-on-event-button">
+            <div class="col-lg-6">
+            <%= link_to "Accept the invitation",
+                event_path(event, event: { status: "accepted"}),
+                data: { turbo_method: :patch },
+                class:"border border-0 badge text-bg-success text-light link-offset-2 link-underline link-underline-opacity-0" %>
+            </div>
+            <div class="col-lg-6">
+              <%= link_to "Decline the invitation",
+                            event_path(event, event: { status: "declined" }),
+                            data: { turbo_method: :patch },
+                            class:"border border-0 badge text-bg-light link-offset-2 link-underline link-underline-opacity-0" %>
+            </div>
+            </div>
+            <% end %>
             <p class="btn btn-flat px-3 py-1 text-center text-light event-button">
             see more details
             </p>
