@@ -1,12 +1,15 @@
 <%# accept variables:
   item,
-  default_img (for img's path),
+  path/ (for img's path),
   class_name (empty string if no specific class),
   alt %>
-<% if item.photo.key %>
-  <%= cl_image_tag(item.photo.key) %>
+<% style = style || "" %>
+<% class_name = class_name || "" %>
+<% default_img = default_img || "" %>
+<% if !default_img.empty? %>
+    <%= image_tag default_img, class: class_name, alt: alt, style: style %>
+<% elsif item.image_path %>
+    <%= image_tag "#{path[0]}#{item.image_path}#{path[1]}", class: class_name, alt: alt, style: style %>
 <% else %>
-  <% style = style || "" %>
-  <% class_name = class_name || "" %>
-  <%= image_tag default_img, class: class_name, alt: alt, style: style %>
+  <%= image_tag "#{path[0]}9#{path[1]}", class: class_name, alt: alt, style: style %>
 <% end %>

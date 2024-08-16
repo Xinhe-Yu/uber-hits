@@ -1,4 +1,4 @@
-<% img_paths = [
+<%# <% img_paths = [
 "https://partyanimals.com/media/screenshots/media-image-5.jpg",
 "https://partyanimals.com/media/screenshots/media-image-6.jpg",
 "https://partyanimals.com/media/screenshots/media-image-7.jpg",
@@ -17,7 +17,7 @@
         <div class="uh-image">
           <%= render "shared/default_photo",
                     item: event,
-                    default_img: img_paths.sample,
+                    path: ["https://partyanimals.com/media/screenshots/media-image-", ".jpg"],
                     alt: "#{event.title}'s image" %>
           <% if visitor == "user" %>
             <%= render "events/status_badge", status: event.status, class_name: "status-badge-in-card" %>
@@ -54,6 +54,22 @@
             <p class="card-text">
               <i class="fa-solid fa-location-dot"></i> <%= event&.place %>
             </p>
+            <% end %>
+            <% if visitor == "fighter" %>
+            <div class="row btn-group-on-event-button">
+            <div class="col-lg-6">
+            <%= link_to "Accept the invitation",
+                event_path(event, event: { status: "accepted"}),
+                data: { turbo_method: :patch },
+                class:"border border-0 badge text-bg-success text-light link-offset-2 link-underline link-underline-opacity-0" %>
+            </div>
+            <div class="col-lg-6">
+              <%= link_to "Decline the invitation",
+                            event_path(event, event: { status: "declined" }),
+                            data: { turbo_method: :patch },
+                            class:"border border-0 badge text-bg-light link-offset-2 link-underline link-underline-opacity-0" %>
+            </div>
+            </div>
             <% end %>
             <p class="btn btn-flat px-3 py-1 text-center text-light event-button">
             see more details
