@@ -31,13 +31,20 @@
                 } %>
   </div>
   <div class="col-md-6">
-    <%= f.input :duration,
-                as: :integer,
-                input_html: {
+    <%= f.label :duration,
+                required: true,
+                class: 'form-label' %>
+    <div class="input-group">
+      <%= f.input_field :duration,
+                  as: :integer,
                   min: 1,
                   max: 6,
-                  placeholder:1
-                }%>
+                  placeholder: "1",
+                  class:'form-control' %>
+      <div class="input-group-append">
+        <span class="input-group-text">hours</span>
+      </div>
+    </div>
   </div>
 </div>
 <div class="description-container">
