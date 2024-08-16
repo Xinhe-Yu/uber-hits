@@ -1,5 +1,5 @@
 <div class="main-container ms-5 me-5">
-  <h2 class="py-3"><%= "#{@fighter.nickname}" %></h2>
+  <h2 class="py-3 ms-5"><%= "#{@fighter.nickname}" %></h2>
   <div class="d-flex justify-content-center">
     <div class="col-lg-6">
       <div class="fighter-infos">
@@ -17,7 +17,7 @@
         <h3><%= "#{@fighter.first_name} #{@fighter.last_name}" %></h3>
         <p><i class="fa-solid fa-ruler-vertical"></i><%= " #{@fighter.height}cm  |  "%>
           <i class="fa-solid fa-weight-scale"></i></i><%= " #{@fighter.weight} kg " %></p>
-        <p><i class="fa-solid fa-user-ninja"></i><%= " Style de combat:"%>
+        <p><i class="fa-solid fa-user-ninja"></i><%= " Fight style:"%>
           <b><%="#{@fighter.fight_style}" %></b>
         </p>
         <hr class="mt-4">
@@ -25,7 +25,7 @@
           <%= render "shared/default_photo", item: @fighter, default_img: "https://partyanimals.com/media/avatars/avatars-2.png", class_name: "avatar", alt: "avatar" %>
           <div class="notification-content">
             <h5>Fighter experience</h5>
-            <p>Fighter since <b><%= @fighter.accepted_passed_events %></b> time</p>
+            <p>I have completed <b><%= @fighter.accepted_passed_events %></b> fight <%= @fighter.accepted_passed_events > 1 ? "s" : "" %></p>
           </div>
         </div>
         <div>
@@ -37,19 +37,28 @@
     </div>
     <div class="form ms-3 col-lg-5">
       <%= render "events/form", fighter: @fighter, event: @event %>
-      <%# <img src="https://sp-ao.shortpixel.ai/client/to_auto,q_glossy,ret_img,w_740,h_900/https://cdn.marketing123.123formbuilder.com/wp-content/uploads/2023/04/private-school-application-form.jpg" alt="formulaire"> %>
     </div>
   </div>
-  <hr>
-  <h4>Reviews</h4>
-  <div class="row">
-    <% @fighter.reviews.each do |review| %>
-        <% if review.user_to_fighter %>
-    <div class="col-lg-6">
-          <%= render "reviews/show", review: review %>
-    </div>
+  <div class="reviews-container col-lg-12 mx-5">
+    <div class="row">
+      <hr>
+      <h4>Reviews</h4>
+      <% @fighter.reviews.each do |review| %>
+          <% if review.user_to_fighter %>
+      <div class="col-lg-6">
+            <%= render "reviews/show", review: review %>
+      </div>
+          <% end %>
         <% end %>
-      <% end %>
+    </div>
+  </div>
+
+  <div class="map mx-5">
+    <hr>
+    <h4>Where to find me?</h4>
+    <div class="row">
+      <p>I'm here</p>
+    </div>
   </div>
 </div>
 
