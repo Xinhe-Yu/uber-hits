@@ -1,14 +1,38 @@
-<div class="container">
-  <h1>
-  <%= @event.title %>
-  <% if @event.waiting_time %>
-    <span class="badge bg-danger-subtle text-danger-emphasis rounded-pill"><%= @event.waiting_time %></span>
-  <% end %>
+<div class="main-container mx-5">
+  <h2 class="py-3">
+    <%= @event.fighter.nickname %><span class="text-muted"> in <%= @event.title %></span>
+    <% if @event.waiting_time %>
+      <span class="badge bg-danger-subtle text-danger-emphasis rounded-pill"><%= @event.waiting_time %></span>
+    <% end %>
+  </h2>
+  <div class="d-flex flex-row w-75">
+    <div class="p-2 event-image fs-5">
+      <%= render "shared/default_photo",
+                item: @event,
+                default_img: "https://partyanimals.com/media/screenshots/media-image-9.jpg",
+                alt: "#{@event.title}'s image" %>
+      <%= render "events/status_badge",
+                  status: @event.status,
+                  date: @event.end_time,
+                  class_name:"status-badge-in-event" %>
+    </div>
+    <div class="p-2 event-image">
+      <%= render "shared/default_photo",
+                  item: @event.fighter,
+                  default_img: "https://partyanimals.com/media/avatars/thumbnails/avatars-12.webp",
+                  alt: "#{@event.fighter.nickname}'s image" %>
+    </div>
+  </div>
 
-  <%= render "events/status_badge", status: @event.status, date: @event.end_time %>
-  </h1>
-
-  <div class="p-4"></div>
+  <div class="p-4">
+    <p><i class="fa-solid fa-calendar-days"></i> Start at: <b><%= @event.start_time %></b></p>
+    <% if @event.target %>
+      <p><i class="fa-solid fa-bullseye"> </i> Target: <b><%= @event.target %></b></p>
+    <% end %>
+    <% if @event.description %>
+      <p></p>
+    <% end %>
+  </div>
 
   <% @event.reviews.each do |review| %>
     <%= render "reviews/show", review: review %>

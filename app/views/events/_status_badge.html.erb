@@ -1,11 +1,20 @@
-<% if date && date.to_date < Date.today %>
-  <span class="badge text-bg-secondary">PASSED</span>
-<% end %>
+<% date = date || nil %>
+<% class_name = class_name || "" %>
+<% style = style || "" %>
+<%# <% if date && date.to_date < Date.today %>
 
 <% if status == "accepted" %>
-  <span class="badge text-bg-success">ACCEPTED</span>
+  <div class=" <%= class_name %>" style="<%= style %>">
+  <span class="stat mb-0">
+  ACCEPTED
+  </span>
+  </div>
 <% elsif status == "pending" %>
-  <span class="badge text-bg-primary">PENDING</span>
+  <div class=" <%= class_name %>" style="<%= style %>">  <span class="stat mb-0">
+  WAITING
+  </span></div>
 <% else %>
-  <span class="badge text-bg-warning">DECLINED</span>
+  <div class=" <%= class_name %>" style="<%= style %>">  <span class="stat mb-0">
+  DECLINED
+  </span></div>
 <% end %>
