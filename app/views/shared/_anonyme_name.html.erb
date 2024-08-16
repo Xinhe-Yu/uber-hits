@@ -1,0 +1,13 @@
+
+<%# <%= render "shared/anonyme_name", user: user_instance/fighter_instance %>
+<% first = user.first_name[0] + "*" * 3 %>
+
+<% if user.last_name.length > 4 %>
+  <% last = user.last_name[0..1] + "*" * (user.last_name.length - 3) + user.last_name[-1] %>
+<% else %>
+  <% last = user.last_name[0] + "*" * 3  %>
+<% end %>
+
+
+
+<%= "#{first} #{last}" %>

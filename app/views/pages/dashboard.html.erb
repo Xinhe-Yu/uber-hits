@@ -1,35 +1,37 @@
 <div class="container">
-  <h1>Hello, <%= current_user.first_name ? current_user.first_name : current_user.email %>!</h1>
+  <h1 class="d-flex justify-content-between">
+  Hello, <%= current_user.first_name ? current_user.first_name : current_user.email %>!
+    <span>
+    <%# ----- start of the edit profile button group ----- %>
+      <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+      <% unless current_user.fighter %>
+        <%= link_to 'Edit Profile', edit_user_registration_path, class:"btn btn-danger text-light" %>
+        <%= link_to 'Become Fighter', new_fighter_path, class:"btn btn-dark"  %>
+      <% else %>
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-secondary rounded-pill"
+          data-bs-toggle="dropdown" aria-expanded="false">
+            Edit Profile
+          </button>
+          <ul class="dropdown-menu">
+            <li>
+                <%= link_to 'Edit USER Profile', edit_user_registration_path, class:"dropdown-item" %>
+            </li>
+            <li>
+                <%= link_to 'Edit FIGHTER Profile', edit_fighter_path(current_user), class:"dropdown-item" %>
+            </li>
+          </ul>
+        </div>
+      <% end %>
+      </div>
+    <%# ----- end of the edit profile button group ----- %>
+    </span>
 
-  <% if current_user.fighter %>
-    <div>
-      <%= "#{current_user.fighter.first_name} #{current_user.fighter.last_name} \"#{current_user.fighter.nickname}\"" %>
-    </div>
-  <% end %>
+  </h1>
+<hr class="hr-short">
+
 <%= render "events/personal_index", events: @events, fighter_events: @fighter_events %>
 
-  <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
 
-  <% unless current_user.fighter %>
-    <%= link_to 'Edit Profile', edit_user_registration_path, class:"btn btn-danger text-light" %>
-    <%= link_to 'Become Fighter', new_fighter_path, class:"btn btn-dark"  %>
-
-  <% else %>
-    <div class="btn-group" role="group">
-      <button type="button" class="btn btn-secondary rounded-pill"
-      data-bs-toggle="dropdown" aria-expanded="false">
-        Edit Profile
-      </button>
-      <ul class="dropdown-menu">
-        <li>
-            <%= link_to 'Edit USER Profile', edit_user_registration_path, class:"dropdown-item" %>
-        </li>
-        <li>
-            <%= link_to 'Edit FIGHTER Profile', edit_fighter_path(current_user), class:"dropdown-item" %>
-        </li>
-      </ul>
-    </div>
-  <% end %>
-  </div>
 
 </div>

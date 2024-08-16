@@ -16,9 +16,12 @@
 
   <body>
   <%= render "shared/navbar" %>
-  <div class="m-2"></div>
+  <div style="min-height:100vh;position:relative">
     <%= render "shared/flashes" %>
+    <div style="margin-top:7.5rem;padding-bottom:2.5rem;">
     <%= yield %>
+    </div>
     <%= render "shared/footer" %>
+  </div>
   </body>
 </html>

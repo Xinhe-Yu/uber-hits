@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[show edit update destroy]
+  before_action :set_fighter, only: %i[new create]
   skip_before_action :authenticate_user!, only: :index
 
   def index
@@ -8,12 +9,10 @@ class EventsController < ApplicationController
   end
 
   def new
-    @fighter = Fighter.find(params[:fighter_id])
     @event = Event.new
   end
 
   def create
-    @fighter = Fighter.find(params[:fighter_id])
     @event = Event.new(event_params)
     @event.user = current_user
     @event.fighter = @fighter
@@ -34,7 +33,7 @@ class EventsController < ApplicationController
   def edit; end
 
   def update
-    @event.end_time = calcul_end_time
+    @event.end_time = calcul_end_time if event_params[:duration].present?
     if @event.update(event_params)
       redirect_to event_path(@event), notice: "You succesfully modified the event."
     else
@@ -56,6 +55,10 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
+  def set_fighter
+    @fighter = Fighter.find(params[:fighter_id])
+  end
+
   def event_params
     params.require(:event).permit(
       :title, :description, :place,
@@ -67,17 +70,22 @@ class EventsController < ApplicationController
   end
 
   def waiting_for_comment
-    return false if @event.end_time.to_datetime < Time.now
+    return false if @event.end_time.to_datetime > Time.now
 
     is_user = @event.user == current_user
     is_fighter = @event.fighter == current_user.fighter
     return false if !(is_user || is_fighter) || @event.reviews.length == 2
     return true if @event.reviews.empty?
 
-    @event.reviews[0].user_to_fighter != user
+    @event.reviews[0].user_to_fighter != is_user
   end
 
+
+
   def calcul_end_time
-    event_params[:start_time].to_date + event_params[:duration].to_i.hours
+    duration = event_params[:duration].empty? ? 1 : event_params[:duration].to_i
+    p "start time type"
+    p event_params[:start_time]
+    Time.zone.parse(event_params[:start_time]) + duration.hours
   end
 end

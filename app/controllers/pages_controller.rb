@@ -24,6 +24,7 @@ class PagesController < ApplicationController
     end
     @availability = current_user.fighter.fighter_weekly_availability
     @availabilities = current_user.fighter.fighters_availabilities
+    @reservations = current_user.fighter.events.where(status: "accepted")
   end
 
   private

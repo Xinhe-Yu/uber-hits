@@ -12,11 +12,6 @@ class FightersAvailability < ApplicationRecord
 
   private
 
-  # def set_default_times
-  #   self.start_time ||= "09:00"
-  #   self.end_time ||= "17:00"
-  # end
-
   def should_generate_availability?
     new_record? && is_available.nil?
   end

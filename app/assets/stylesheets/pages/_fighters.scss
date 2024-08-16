@@ -1,16 +1,16 @@
-.container {
-  margin-top: 120px;
-}
 .fighter-card {
   width: 260px;
   height: 440px;
   box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+
   .fighter-image {
     padding: 2px;
+
     .fighter-img {
       border-radius: 10px;
       object-fit: cover;
     }
+
     .fighter-height {
       top: 183px;
       right: 10px;
@@ -18,11 +18,13 @@
       border-radius: 5px;
       padding: 3px 6px;
       text-align: center;
+
       .stat {
         margin-bottom: 5px;
         font-weight: bold;
       }
     }
+
     .fighter-weight {
       top: 217px;
       right: 10px;
@@ -30,6 +32,7 @@
       border-radius: 5px;
       padding: 3px 6px;
       text-align: center;
+
       .stat {
         margin-bottom: 5px;
         font-weight: bold;
@@ -53,6 +56,7 @@
     font-size: 14px;
   }
 }
+
 .map-container {
   position: fixed;
   top: 96px;
@@ -79,7 +83,8 @@
   justify-items: baseline;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 22px;
-  margin-right: 5%; /* To ensure fighters don't overlap with the map */
+  margin-right: 5%;
+  /* To ensure fighters don't overlap with the map */
 }
 
 
