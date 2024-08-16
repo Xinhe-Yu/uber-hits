@@ -4,6 +4,13 @@ class PagesController < ApplicationController
   def home
     @fighters = Fighter.all
     @duration = 1
+    @markers = @fighters.geocoded.map do |fighter|
+      {
+        lat: fighter.latitude,
+        lng: fighter.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: { fighter: fighter })
+      }
+    end
   end
 
   def dashboard

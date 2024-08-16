@@ -4,6 +4,13 @@ class FightersController < ApplicationController
 
   def index
     @fighters = Fighter.all
+    @markers = @fighters.geocoded.map do |fighter|
+      {
+        lat: fighter.latitude,
+        lng: fighter.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: { fighter: fighter })
+      }
+    end
     @duration = params[:duration].present? && !params[:duration].empty? ? params[:duration].to_i : 1
     @fighters = @fighters.search_by_all_names(params[:name]) if params[:name].present? && !params[:name].empty?
     return unless params[:date].present?
@@ -67,7 +74,8 @@ class FightersController < ApplicationController
       :first_name, :last_name, :nickname, :birth_date,
       :height, :weight, :fight_style, :description,
       :price, :have_insurance,
-      :photo
+      :photo,
+      :address
     )
   end
 end

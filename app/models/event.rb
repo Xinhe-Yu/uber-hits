@@ -16,8 +16,8 @@ class Event < ApplicationRecord
   validates :title, presence: true
   validates :fight_type, presence: true, inclusion: { in: EVENT_TYPE, message: "%<value> is not a valid fight type" }
   validates :start_time, presence: true
-  validate :validate_start_time
-  validate :validate_end_time
+  # validate :validate_start_time
+  # validate :validate_end_time
 
   validates :status, inclusion: { in: STATUS, message: "%<value> is not a valid status" }
 

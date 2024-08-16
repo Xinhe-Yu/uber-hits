@@ -129,6 +129,7 @@ user14 = User.create!(
 # Create 5 Users who are also Fighters
 puts "Cooking up some fighters..."
 
+
 fighter1 = Fighter.create!(
   user: user1,
   first_name: user1.first_name,
@@ -140,9 +141,10 @@ fighter1 = Fighter.create!(
   fight_style: "Brawler",
   description: "A legend on the streets, feared for his raw power and iron-clad fists.",
   price: 500.00,
-  have_insurance: true
+  have_insurance: true,
+  address: "16 Villa Gaudelet, Paris"
 )
-
+sleep(5)
 fighter2 = Fighter.create!(
   user: user2,
   first_name: user2.first_name,
@@ -154,8 +156,11 @@ fighter2 = Fighter.create!(
   fight_style: "Ninja Arts",
   description: "Silent, deadly, and always one step ahead. If you see him, it's too late.",
   price: 750.00,
-  have_insurance: false
+  have_insurance: false,
+  address: "10 Rue de Rivoli, Paris"
 )
+sleep(5)
+
 
 fighter3 = Fighter.create!(
   user: user3,
@@ -168,8 +173,10 @@ fighter3 = Fighter.create!(
   fight_style: "Kickboxing",
   description: "He rules the streets with quick reflexes and a bottle of Cola.",
   price: 600.00,
-  have_insurance: true
+  have_insurance: true,
+  address: "25 Rue du Faubourg Saint-Antoine, Paris"
 )
+sleep(5)
 
 fighter4 = Fighter.create!(
   user: user4,
@@ -182,8 +189,10 @@ fighter4 = Fighter.create!(
   fight_style: "Muay Thai",
   description: "Sharper than a knife, this fighter’s elbows and knees leave scars.",
   price: 550.00,
-  have_insurance: false
+  have_insurance: false,
+  address: "50 Avenue de Paris, Vincennes"
 )
+sleep(5)
 
 fighter5 = Fighter.create!(
   user: user5,
@@ -196,10 +205,11 @@ fighter5 = Fighter.create!(
   fight_style: "Capoeira",
   description: "A whirlwind of kicks and spins, unstoppable once he gets going.",
   price: 700.00,
-  have_insurance: true
+  have_insurance: true,
+  address: "32 Rue de la Convention, Paris"
 )
+sleep(5)
 
-# Fighter from Chechnya
 fighter6 = Fighter.create!(
   user: user6,
   first_name: "Khamzot",
@@ -211,10 +221,11 @@ fighter6 = Fighter.create!(
   fight_style: "Wrestling & Sambo",
   description: "A relentless grappler from Chechnya, feared for his brutal ground game... And you know, I'm from Chechnya",
   price: 1000.00,
-  have_insurance: true
+  have_insurance: true,
+  address: "5 Place des Vosges, Paris"
 )
+sleep(5)
 
-# Fighter from the USA
 fighter7 = Fighter.create!(
   user: user7,
   first_name: "Jonny",
@@ -226,10 +237,11 @@ fighter7 = Fighter.create!(
   fight_style: "MMA",
   description: "An unpredictable and versatile fighter from the USA, known for his reach and technique.",
   price: 1500.00,
-  have_insurance: true
+  have_insurance: true,
+  address: "45 Avenue des Champs-Élysées, Paris"
 )
+sleep(5)
 
-# Fighter from Mexico
 fighter8 = Fighter.create!(
   user: user13,
   first_name: "Thierry",
@@ -241,10 +253,11 @@ fighter8 = Fighter.create!(
   fight_style: "Taekwondo & Boxing",
   description: "A flashy striker from Mexico in Paris, known for his great hairs, kicks and fast hands.",
   price: 800.00,
-  have_insurance: false
+  have_insurance: false,
+  address: "60 Rue de Belleville, Paris"
 )
+sleep(5)
 
-# Fighter from China
 fighter9 = Fighter.create!(
   user: user8,
   first_name: "Zhang",
@@ -256,10 +269,11 @@ fighter9 = Fighter.create!(
   fight_style: "Sanda & MMA",
   description: "A powerful and technical fighter from China, dominating her opponents with sheer strength.",
   price: 900.00,
-  have_insurance: true
+  have_insurance: true,
+  address: "12 Boulevard Haussmann, Paris"
 )
+sleep(5)
 
-# Fighter from France
 fighter10 = Fighter.create!(
   user: user8,
   first_name: "Ciryl",
@@ -271,9 +285,10 @@ fighter10 = Fighter.create!(
   fight_style: "Muay Thai & MMA",
   description: "A smooth-moving heavyweight from France that will casser ta bouche si tu parles trop.",
   price: 1400.00,
-  have_insurance: true
+  have_insurance: true,
+  address: "16 Rue du Chemin Vert, Paris"
 )
-
+sleep(5)
 
 # Create Events happening between 10/05/2024 and 10/08/2024
 puts "Creating events..."
