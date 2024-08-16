@@ -14,7 +14,9 @@ class FightersController < ApplicationController
                 .where("DATE(fighters_availabilities.start_time) = ?", params[:date])
   end
 
-  def show; end
+  def show
+    @event = Event.new
+  end
 
   def new
     @fighter = Fighter.new
