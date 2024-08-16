@@ -1,10 +1,9 @@
 <div class="container">
-
   <div class="d-flex justify-content-between">
-  <span class="fs-1">
-    Hello, Fighter <%= current_user.fighter.nickname.capitalize %>!
-    <%= render "shared/medal", class_name: "fs-1", res: (current_user.fighter.average_rating/5) %>
-  </span>
+    <span class="fs-1">
+      Hello, Fighter <%= current_user.fighter.nickname.capitalize %>!
+      <%= render "shared/medal", class_name: "fs-1", res: (current_user.fighter.average_rating/5) %>
+    </span>
     <span>
       <%= link_to 'Edit FIGHTER Profile', edit_fighter_path(current_user), class:"btn btn-secondary rounded-pill" %>
     </span>
@@ -13,26 +12,20 @@
   <hr class="hr-short">
 
   <h2 class="mb-3">My events and availability for 14 coming days</h2>
-    <table class="table table-info table-striped-columns text-center">
-    <% [0..6, 7..13].each do |scope| %>
-      <thead>
-        <tr>
-          <% @real_days[scope].each do |day| %>
-            <th scope="col text-center"><%= day.strftime("%a %d %b") %></th>
-          <% end %>
-        </tr>
-      <thead>
-        <tbody>
-        <tr>
-          <% @real_days[scope].each do |day| %>
-            <% slot = @availabilities.find_by("DATE(start_time) = ?", day) %>
-            <% reservation = @reservations.find_by("DATE(start_time) = ?", day) %>
-            <th>
-              <% if slot %>
-                <% if reservation %>
-                  <%= link_to event_path(reservation), class:"align-middle text-start all-inherit" do %>
-
-                  <div class="card rounded">
+  <div style="display:grid;grid-template-columns: repeat(7, 1fr)">
+  <% [0..6, 7..13].each do |scope| %>
+    <% @real_days[scope].each do |day| %>
+      <div class="card text-bg-light mb-3">
+        <div class="card-header text-center">
+          <%= day.strftime("%a %d %b") %>
+        </div>
+        <div class="card-body">
+          <% slot = @availabilities.find_by("DATE(start_time) = ?", day) %>
+          <% reservation = @reservations.find_by("DATE(start_time) = ?", day) %>
+          <% if slot %>
+            <% if reservation %>
+              <%= link_to event_path(reservation), class:"align-middle text-start all-inherit" do %>
+                <div class="card rounded">
                   <div class="card-body p-2" style="font-size:0.75rem">
                     At <%= reservation.start_time.hour %>:00 | <%= reservation.title %>
                     <br>
@@ -40,29 +33,23 @@
                     booked by: <%= reservation.user.first_name %>
                     </span>
                   </div>
-                  </div>
-
-                  <% end %>
-                <% else %>
-                  <%= button_to fighters_availability_path(slot, fighters_availability: { is_available: !slot.is_available }),
-                  method: :patch,
-                  form: {style: 'margin-top: 0;'},
-                  class: slot.is_available ? "border border-0 badge text-bg-success text-light link-offset-2 link-underline link-underline-opacity-0" : "border border-0 badge text-bg-secondary text-light link-offset-2 link-underline link-underline-opacity-0" do %>
-                    <%= slot.is_available ? "Available" : "Unavailable" %>
-                  <% end %>
-                <% end %>
+                </div>
               <% end %>
-            </th>
+            <% else %>
+              <%= button_to fighters_availability_path(slot, fighters_availability: { is_available: !slot.is_available }),
+                            method: :patch,
+                            form: {style: 'margin-top: 0;'},
+                            class: slot.is_available ? "border border-0 badge text-bg-success text-light link-offset-2 link-underline link-underline-opacity-0" : "border border-0 badge text-bg-secondary text-light link-offset-2 link-underline link-underline-opacity-0" do %>
+              <%= slot.is_available ? "Available" : "Unavailable" %>
+            <% end %>
+            <% end %>
           <% end %>
-        </tr>
-      </tbody>
+        </div>
+      </div>
     <% end %>
-
-    </table>
-
-
-
-<h2>My weekly schedule</h2>
+  <% end %>
+  </div>
+  <h2>My weekly schedule</h2>
 
 <table class="table table-striped-columns text-center">
   <thead>
@@ -73,24 +60,26 @@
     </tr>
   </thead>
   <tbody>
+
+
   <%= simple_form_for @availability do |f|%>
     <tr>
       <% @days_of_week.each do |day| %>
-      <td>
-        <%= f.input day.to_sym, as: :boolean, label: false,
-        input_html: {
-          style: "width: 1.5em; height: 1.5em; margin: auto",
-          class: "border border-2",
-        },
-          wrapper: false
-        %>
-      </td>
+        <td>
+          <%= f.input day.to_sym, as: :boolean, label: false,
+          input_html: {
+            style: "width: 1.5em; height: 1.5em; margin: auto",
+            class: "border border-2",
+          },
+            wrapper: false
+          %>
+        </td>
       <% end %>
     </tr>
 
   </tbody>
 </table>
-  <%= f.button :submit, "Save my change", class: "btn btn-primary" %>
+    <%= f.button :submit, "Save my change", class: "btn btn-primary" %>
   <% end %>
 
 
