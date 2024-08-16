@@ -31,6 +31,9 @@ gem "faker"
 gem "cloudinary"
 
 gem "pg_search", "~> 2.3", ">= 2.3.7"
+
+gem "geocoder"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
