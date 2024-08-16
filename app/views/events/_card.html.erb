@@ -19,12 +19,15 @@
                     item: event,
                     default_img: img_paths.sample,
                     alt: "#{event.title}'s image" %>
+          <% if visitor == "user" %>
+            <%= render "events/status_badge", status: event.status, class_name: "status-badge-in-card" %>
+          <% end %>
         </div>
 
           <div class="uh-card-body card-body">
           <div class="d-flex justify-content-between align-items-center mb-2">
             <h5 class="card-title mb-0 text-body-secondary">
-            <% if visitor == "public" %>
+            <% if visitor == "public" || visitor == "user" %>
               <%= event.fighter.nickname %>
             <% elsif visitor == "fighter" %>
               <%= event.user.first_name %>

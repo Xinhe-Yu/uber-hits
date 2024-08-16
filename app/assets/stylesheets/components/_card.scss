@@ -7,7 +7,7 @@
 }
 
 .uh-image {
-  padding:6px;width:100%
+  padding:6px;width:100%;position:relative
 }
 
 .uh-image img {
@@ -22,4 +22,17 @@
   width:300px !important;
   position:absolute;
   bottom:12px;
+}
+
+.stat {
+  font-weight: bold !important;
+}
+
+.status-badge-in-card {
+  position:absolute;top: 150px;
+      right: 10px;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 5px;
+      padding: 3px 6px;
+      text-align: center;
 }
