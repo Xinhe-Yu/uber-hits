@@ -13,6 +13,9 @@ class Fighter < ApplicationRecord
   has_many :fighters_availabilities, dependent: :destroy
   has_one_attached :photo
 
+  geocoded_by :address
+  after_validation :geocode, if: :will_save_change_to_address?
+
   after_save :create_fighter_weekly_availability, if: :saved_change_to_id?
 
   validates :first_name, :last_name, :nickname, presence: true, length: { minimum: 1 }
