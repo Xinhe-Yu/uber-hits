@@ -1,37 +1,15 @@
 <div class="container">
-<div class="row">
-<h2>My preference</h2>
-
-<table class="table table-striped-columns text-center">
-  <thead>
-    <tr>
-      <% @days_of_week.each do |day| %>
-        <th scope="col"><%= day[0..2].capitalize %></th>
-      <% end %>
-    </tr>
-  </thead>
-  <tbody>
-  <%= simple_form_for @availability do |f|%>
-    <tr>
-      <% @days_of_week.each do |day| %>
-      <td>
-        <%= f.input day.to_sym, as: :boolean, label: false,
-        input_html: {
-          style: "width: 1.5em; height: 1.5em; margin: auto",
-          class: "border border-2",
-        },
-          wrapper: false
-        %>
-      </td>
-      <% end %>
-    </tr>
-
-  </tbody>
-</table>
-  <%= f.button :submit, "Save my change", class: "btn btn-primary" %>
-  <% end %>
-
-  <h2>My disponibility of 7 coming days</h2>
+  <div class="d-flex justify-content-between">
+  <span class="fs-1">
+    Hello, Fighter <%= current_user.fighter.nickname.capitalize %>!
+    <%= render "shared/medal", class_name: "fs-1", res: (current_user.fighter.average_rating/5) %>
+  </span>
+    <span>
+      <%= link_to 'Edit FIGHTER Profile', edit_fighter_path(current_user), class:"btn btn-secondary rounded-pill" %>
+    </span>
+  </div>
+  <hr class="hr-short">
+  <h2>My events and availability for 14 coming days</h2>
 <table class="table table-info table-striped-columns text-center">
 <% [0..6, 7..13].each do |scope| %>
   <thead>
@@ -63,5 +41,40 @@
 <% end %>
 
 </table>
-  </div>
+
+
+
+<h2>My weekly schedule</h2>
+
+<table class="table table-striped-columns text-center">
+  <thead>
+    <tr>
+      <% @days_of_week.each do |day| %>
+        <th scope="col"><%= day[0..2].capitalize %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+  <%= simple_form_for @availability do |f|%>
+    <tr>
+      <% @days_of_week.each do |day| %>
+      <td>
+        <%= f.input day.to_sym, as: :boolean, label: false,
+        input_html: {
+          style: "width: 1.5em; height: 1.5em; margin: auto",
+          class: "border border-2",
+        },
+          wrapper: false
+        %>
+      </td>
+      <% end %>
+    </tr>
+
+  </tbody>
+</table>
+  <%= f.button :submit, "Save my change", class: "btn btn-primary" %>
+  <% end %>
+
+
+
 </div>

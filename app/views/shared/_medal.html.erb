@@ -1,0 +1,10 @@
+<%# res : a number between 0 and 1  %>
+<%# Example : <%= render "shared/medal", class_name: "fs-3", res: (current_user.fighter.average_rating / 5) %>
+<% if res > 0.6 %>
+  <% color = "#FFD700" %>
+<% elsif res > 0.2 %>
+  <% color = "#C0C0C0" %>
+<% else %>
+  <% color = "#CD7F32" %>
+<% end %>
+<i class="fa-solid fa-medal <%= "#{class_name}" %>" style="color:<%= color %>"></i>
