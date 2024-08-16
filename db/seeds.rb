@@ -324,7 +324,8 @@ event1 = Event.create!(
   description: "The winner controls the turf. The loser? Well, they just lose.",
   user: user1,
   fighter: fighter3,
-  status: "pending"
+  status: "pending",
+  image_path: "5"
 )
 
 event2 = Event.create!(
@@ -337,7 +338,8 @@ event2 = Event.create!(
   description: "Only one fighter walks away with the slice, the other with a bruised ego.",
   user: user2,
   fighter: fighter1,
-  status: "accepted"
+  status: "accepted",
+  image_path: "6"
 )
 
 event3 = Event.create!(
@@ -350,7 +352,8 @@ event3 = Event.create!(
   description: "A no-holds-barred brawl to determine who gets the corner seat on the train.",
   user: user3,
   fighter: fighter4,
-  status: "declined"
+  status: "declined",
+  image_path: "7"
 )
 
 event4 = Event.create!(
@@ -363,7 +366,8 @@ event4 = Event.create!(
   description: "A high-stakes fight for the control of the corner.",
   user: user4,
   fighter: fighter2,
-  status: "pending"
+  status: "pending",
+  image_path: "8"
 )
 
 event5 = Event.create!(
@@ -376,7 +380,8 @@ event5 = Event.create!(
   description: "Fighters clash in the dark corners of the warehouse, winner takes all.",
   user: user5,
   fighter: fighter4,
-  status: "accepted"
+  status: "accepted",
+  image_path: "9"
 )
 
 event6 = Event.create!(
@@ -389,7 +394,8 @@ event6 = Event.create!(
   description: "Two cars, one spot. Only the strongest survives.",
   user: user1,
   fighter: fighter2,
-  status: "pending"
+  status: "pending",
+  image_path: "10"
 )
 
 event7 = Event.create!(
@@ -402,7 +408,8 @@ event7 = Event.create!(
   description: "It’s about more than just coffee, it's about respect.",
   user: user2,
   fighter: fighter4,
-  status: "accepted"
+  status: "accepted",
+  image_path: "11"
 )
 
 event8 = Event.create!(
@@ -415,7 +422,8 @@ event8 = Event.create!(
   description: "Who said parking was easy? Not when you're fighting for it.",
   user: user3,
   fighter: fighter5,
-  status: "declined"
+  status: "declined",
+  image_path: "12"
 )
 
 event9 = Event.create!(
@@ -428,7 +436,8 @@ event9 = Event.create!(
   description: "Sun, sand, and a fistfight to remember.",
   user: user4,
   fighter: fighter1,
-  status: "accepted"
+  status: "accepted",
+  image_path: "13"
 )
 
 event10 = Event.create!(
@@ -441,7 +450,8 @@ event10 = Event.create!(
   description: "When fashion meets fury, only one can walk out in style.",
   user: user5,
   fighter: fighter3,
-  status: "pending"
+  status: "pending",
+  image_path: "14"
 )
 
 event11 = Event.create!(
@@ -455,7 +465,8 @@ event11 = Event.create!(
   user: user9,  # A user who is not a fighter
   fighter: fighter6,
   status: "accepted",
-  is_private: false
+  is_private: false,
+  image_path: "15"
 )
 
 event12 = Event.create!(
@@ -469,7 +480,8 @@ event12 = Event.create!(
   user: user12, # A user who is not a fighter
   fighter: fighter7,
   status: "pending",
-  is_private: true
+  is_private: true,
+  image_path: "16"
 )
 
 event13 = Event.create!(
@@ -483,7 +495,8 @@ event13 = Event.create!(
   user: user8,  # A user who is not a fighter
   fighter: fighter8,
   status: "accepted",
-  is_private: false
+  is_private: false,
+  image_path: "3"
 )
 
 event14 = Event.create!(
@@ -497,7 +510,8 @@ event14 = Event.create!(
   user: user9,  # A user who is not a fighter
   fighter: fighter9,
   status: "accepted",
-  is_private: true
+  is_private: true,
+  image_path: "6"
 )
 
 event15 = Event.create!(
@@ -511,11 +525,39 @@ event15 = Event.create!(
   user: user10,  # A user who is not a fighter
   fighter: fighter10,
   status: "pending",
-  is_private: false
+  is_private: false,
+  image_path: "8"
 )
 
+event16 = Event.create!(
+  title: "Mêlage de Mathieu",
+  fight_type: "ambush",
+  place: "18 rue de la croix, dans le 60",
+  start_time: DateTime.new(2024, 8, 16, 18, 0),
+  end_time: DateTime.new(2024, 8, 16, 20, 0),
+  target: "Mathieu le Wulfens et son yorkshire là",
+  description: "Il parle mal et a besoin d'une bonne mêlée des familles. Il faut bien le mélanger",
+  user: user13,  # A user who is not a fighter
+  fighter: fighter10,
+  status: "accepted",
+  is_private: false,
+  image_path: "3"
+)
 
-
+event17 = Event.create!(
+  title: "Vengeance",
+  fight_type: "ambush",
+  place: "Chez Mario",
+  start_time: DateTime.new(2024, 8, 16, 18, 0),
+  end_time: DateTime.new(2024, 8, 16, 20, 0),
+  target: "Mario the Mario",
+  description: "Apparemment c'est une légende, il faut l'éteindre.",
+  user: user3,  # A user who is not a fighter
+  fighter: fighter9,
+  status: "accepted",
+  is_private: false,
+  image_path: "3"
+)
 
 # Create 15 Reviews
 puts "Creating reviews..."
