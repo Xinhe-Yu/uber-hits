@@ -6,5 +6,7 @@
 <% if item.photo.key %>
   <%= cl_image_tag(item.photo.key) %>
 <% else %>
-  <%= image_tag default_img, class: class_name, alt: alt %>
+  <% style = style || "" %>
+  <% class_name = class_name || "" %>
+  <%= image_tag default_img, class: class_name, alt: alt, style: style %>
 <% end %>
