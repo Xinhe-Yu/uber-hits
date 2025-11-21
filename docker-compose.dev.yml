@@ -1,0 +1,37 @@
+version: "3.9"
+
+services:
+  web:
+    build:
+      context: .
+    command: ./bin/rails server -b 0.0.0.0
+    environment:
+      RAILS_ENV: development
+      DATABASE_URL: ${DATABASE_URL:-postgres://postgres@db:5432/uber_hits_development}
+      MAPBOX_API_KEY: ${MAPBOX_API_KEY:-}
+      CLOUDINARY_URL: ${CLOUDINARY_URL:-}
+      PORT: 3000
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/rails
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:15
+    restart: unless-stopped
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+      POSTGRES_DB: uber_hits_development
+    volumes:
+      - postgres-data-dev:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d uber_hits_development"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres-data-dev:
