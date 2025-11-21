@@ -1,0 +1,20 @@
+#!/bin/bash -e
+
+# Ensure tmp exists (bind mount persists across runs)
+mkdir -p tmp
+
+echo "Running database migrations..."
+./bin/rails db:prepare
+
+# Seed only if we have not done so yet for this workspace
+SEED_MARKER=tmp/development_seeded
+if [ ! -f "$SEED_MARKER" ]; then
+  echo "Seeding database with demo data..."
+  ./bin/rails db:seed
+  touch "$SEED_MARKER"
+else
+  echo "Seed data already loaded (remove $SEED_MARKER to reseed)."
+fi
+
+echo "Starting Rails server"
+exec ./bin/rails server -b 0.0.0.0
