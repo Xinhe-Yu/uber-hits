@@ -20,7 +20,7 @@ ENV RAILS_ENV="production" \
 
 # Install packages needed to build gems
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential git libpq-dev libvips pkg-config && \
+    apt-get install --no-install-recommends -y build-essential git libpq-dev libvips pkg-config nodejs && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Install application gems
@@ -46,7 +46,7 @@ ENV RAILS_ENV="development" \
     BUNDLE_DEPLOYMENT="0"
 
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential git libpq-dev libvips pkg-config && \
+    apt-get install --no-install-recommends -y build-essential git libpq-dev libvips pkg-config nodejs && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 COPY Gemfile Gemfile.lock ./
@@ -63,7 +63,7 @@ ENV RAILS_ENV="production" \
 
 # Install packages needed for deployment
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y curl libvips postgresql-client && \
+    apt-get install --no-install-recommends -y curl libvips postgresql-client nodejs && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Copy built artifacts: gems, application
